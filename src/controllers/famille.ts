@@ -3,7 +3,9 @@ import * as familleService from "../services/famille";
 
 export function listAllFamilles(req: Request, res: Response) {
   const familles = familleService.getAllFamilles();
-  res.json(familles);
+  if(familles){
+    res.json(familles);
+  }
 }
 
 export function listFamilleByID(req: Request, res: Response){
