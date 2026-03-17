@@ -10,7 +10,7 @@ export function listAllMedicaments(req: Request , res:Response){
 
 export function listAllMedicamentsByID(req: Request , res:Response){
     const {id} = req.params;
-    const medicament = medicamentsServices.getMedicamentByID(id);
+    const medicament = medicamentsServices.getMedicamentByID(id));
     if (medicament){
         res.json(medicament);
     }
@@ -30,7 +30,7 @@ export function createMedicament(req: Request , res:Response){
 export function updateMedicamentByID(req: Request , res:Response){
     const {id} = req.params;
     const data = req.body;
-    const updatedMedicament = medicamentsServices.updateMedicamentByID(Number(id), data);
+    const updatedMedicament = medicamentsServices.updateMedicamentByID(id, data);
     if (updatedMedicament){
         res.json(updatedMedicament);
     }
@@ -41,8 +41,8 @@ export function updateMedicamentByID(req: Request , res:Response){
 
 export function deleteMedicamentByID(req: Request , res:Response){
     const {id} = req.params;
-    const deleteMedicamentByID = medicamentsServices.deleteMedicamentByID(Number(id));
-    if (deleteMedicamentByID){
+    const deleteMedicamentByID = medicamentsServices.deleteMedicamentByID(id);
+    if(deleteMedicamentByID){
         res.json(deleteMedicamentByID);
     }
     else{
