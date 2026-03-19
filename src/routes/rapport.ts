@@ -3,12 +3,14 @@ import * as rapportControleur from "../controllers/rapport";
 
 const router = Router();
 
-router.get('/rapports' , rapportControleur.)
+router.get('/rapports' , rapportControleur.listAllRapport)
 
-router.get()
+router.get('/rapport/:id' , rapportControleur.listRapportByID)
 
-router.post()
+router.post('/rapport' , rapportControleur.createRapport)
 
-router.put()
+router.put('/rapport/:id' , rapportControleur.updateRapportByID)
 
-router.delete()
+router.delete('/rapport/:id' , rapportControleur.deleteRapportByID)
+
+export default router;

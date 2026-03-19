@@ -12,3 +12,5 @@ router.post('/medecin' , medecinControleur.createMedecin);
 router.put('/medecin/:id' , medecinControleur.updateMedecinByID);
 
 router.delete('/medecin' , medecinControleur.deleteMedecinByID);
+
+export default router;

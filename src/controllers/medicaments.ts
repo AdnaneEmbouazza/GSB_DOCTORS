@@ -6,7 +6,7 @@ export function listAllMedicaments(req: Request , res:Response){
     if (medicaments){
         res.json(medicaments);
     }
-}
+};
 
 export function listAllMedicamentsByID(req: Request , res:Response){
     const {id} = req.params;
@@ -14,7 +14,7 @@ export function listAllMedicamentsByID(req: Request , res:Response){
     if (medicament){
         res.json(medicament);
     }
-}
+};
 
 export function createMedicament(req: Request , res:Response){
     const data = req.body;
@@ -25,7 +25,7 @@ export function createMedicament(req: Request , res:Response){
     else{
         // gérer les cas d'erreur , mettre en place une gestion d'erreur plus robuste
     }
-}
+};
 
 export function updateMedicamentByID(req: Request , res:Response){
     const {id} = req.params;
@@ -37,7 +37,7 @@ export function updateMedicamentByID(req: Request , res:Response){
     else{
         // gérer les cas d'erreur , mettre en place une gestion d'erreur plus robuste
     }
-}
+};
 
 export function deleteMedicamentByID(req: Request , res:Response){
     const {id} = req.params;
@@ -48,4 +48,4 @@ export function deleteMedicamentByID(req: Request , res:Response){
     else{
         // gérer les cas d'erreur , mettre en place une gestion d'erreur plus robuste
     }
-}
+};

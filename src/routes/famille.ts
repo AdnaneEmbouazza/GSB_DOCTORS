@@ -12,3 +12,5 @@ router.post('/famille' , familleControlleur.createFamille);
 router.put('/famille/:id' , familleControlleur.updateFamilleByID);
 
 router.delete('/famille/:id' , familleControlleur.deleteFamilleByID);
+
+export default router;

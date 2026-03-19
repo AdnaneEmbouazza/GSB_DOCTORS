@@ -6,7 +6,7 @@ export function listAllOffre (req : Request , res : Response){
     if(offre){
         res.json(offre);
     }
-}
+};
 
 export function listOffreByID (req : Request , res: Response){
     const {id} = req.params;
@@ -17,7 +17,7 @@ export function listOffreByID (req : Request , res: Response){
     else{
         // gérer les cas d'erreur , mettre en place une gestion d'erreur plus robuste
     }
-}
+};
 
 export function createOffre(req : Request , res:Response){
     const data = req.body;
@@ -29,7 +29,7 @@ export function createOffre(req : Request , res:Response){
     else{
         // gérer les cas d'erreur , mettre en place une gestion d'erreur plus robuste
     }
-}
+};
 
 export function updateOffreByID(req: Request , res: Response){
     const {id} = req.params;
@@ -42,7 +42,7 @@ export function updateOffreByID(req: Request , res: Response){
     else{
         // gérer les cas d'erreur , mettre en place une gestion d'erreur plus robuste
     }
-}
+};
 
 export function deleteOffreByID(req : Request , res: Response){
     const {id} = req.params;
@@ -54,4 +54,4 @@ export function deleteOffreByID(req : Request , res: Response){
     else {
         // gérer les cas d'erreur , mettre en place une gestion d'erreur plus robuste
     }
-}
+};

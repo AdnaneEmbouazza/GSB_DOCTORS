@@ -6,7 +6,7 @@ export function listAllMedecins(req: Request , res:Response){
     if (medecins){
         res.json(medecins);
     }
-}
+};
 
 export function listMedecinsByID(req : Request , res:Response){
     const id = req.params.id;
@@ -17,7 +17,7 @@ export function listMedecinsByID(req : Request , res:Response){
     else{
         // gérer les cas d'erreur , mettre en place une gestion d'erreur plus robuste
     }
-}
+};
 
 export function createMedecin(req: Request , res:Response){
     const data = req.body;
@@ -28,7 +28,7 @@ export function createMedecin(req: Request , res:Response){
     else{
         // gérer les cas d'erreur , mettre en place une gestion d'erreur plus robuste
     }
-}
+};
 
 export function updateMedecinByID(req: Request , res:Response){
     const id = req.params.id;
@@ -40,7 +40,7 @@ export function updateMedecinByID(req: Request , res:Response){
     else{
         // gérer les cas d'erreur , mettre en place une gestion d'erreur plus robuste
     }
-}
+};
 
 export function deleteMedecinByID(req: Request , res:Response){
     const id = req.params.id;
@@ -51,4 +51,4 @@ export function deleteMedecinByID(req: Request , res:Response){
     else{
         // gérer les cas d'erreur , mettre en place une gestion d'erreur plus robuste
     }
-}
+};

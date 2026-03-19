@@ -6,7 +6,7 @@ export function listAllFamilles(req: Request, res: Response) {
   if(familles){
     res.json(familles);
   }
-}
+};
 
 export function listFamilleByID(req: Request, res: Response){
     const {id} = req.params;
@@ -16,7 +16,7 @@ export function listFamilleByID(req: Request, res: Response){
     } else {
         // gérer les cas d'erreur , mettre en place une gestion d'erreur plus robuste
     }
-}
+};
 
 export function createFamille (req: Request, res: Response){
     const data = req.body;
@@ -27,7 +27,7 @@ export function createFamille (req: Request, res: Response){
     else{
         // gérer les cas d'erreur , mettre en place une gestion d'erreur plus robuste
     }
-}
+};
 
 export function updateFamilleByID (req: Request, res: Response){
     const {id} = req.params;
@@ -38,7 +38,7 @@ export function updateFamilleByID (req: Request, res: Response){
     } else {
         // gérer les cas d'erreur , mettre en place une gestion d'erreur plus robuste
     }
-}
+};
 
 export function deleteFamilleByID (req: Request , res: Response){
     const {id} = req.params;
@@ -48,4 +48,4 @@ export function deleteFamilleByID (req: Request , res: Response){
     } else {
         // gérer les cas d'erreur , mettre en place une gestion d'erreur plus robuste
     }
-}
+};

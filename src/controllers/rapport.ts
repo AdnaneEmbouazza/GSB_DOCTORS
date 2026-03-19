@@ -9,7 +9,7 @@ export function listAllRapport (req:Request , res : Response){
     else{
         // gérer les cas d'erreur , mettre en place une gestion d'erreur plus robuste
     }
-}
+};
 
 export function listRapportByID(req : Request , res : Response){
     const {id} = req.params;
@@ -21,7 +21,7 @@ export function listRapportByID(req : Request , res : Response){
     else {
         // gérer les cas d'erreur , mettre en place une gestion d'erreur plus robuste
     }
-}
+};
 
 export function createRapport(req : Request , res : Response){
     const data = req.body;
@@ -33,7 +33,7 @@ export function createRapport(req : Request , res : Response){
     else {
         // gérer les cas d'erreur , mettre en place une gestion d'erreur plus robuste
     }
-}
+};
 
 export function updateRapportByID(req : Request , res : Response){
     const {id} = req.params;
@@ -47,7 +47,7 @@ export function updateRapportByID(req : Request , res : Response){
     else {
         // gérer les cas d'erreur , mettre en place une gestion d'erreur plus robuste
     }
-}
+};
 
 export function deleteRapportByID(req: Request , res:Response){
     const {id} = req.params;
@@ -59,4 +59,4 @@ export function deleteRapportByID(req: Request , res:Response){
     else {
         // gérer les cas d'erreur , mettre en place une gestion d'erreur plus robuste
     }
-}
+};
