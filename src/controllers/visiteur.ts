@@ -3,7 +3,6 @@ import * as visiteurService from "../services/visiteur";
 
 // CONTROLEURS POUR LES CONNEXIONS DES VISITEURS
 export async function login (req: Request, res: Response) : Promise<void> {
-    // Récupérer les données de connexion du corps de la requête
     const { email, password } = req.body;
     try {
         // Appeler le service de connexion pour vérifier les informations d'identification
@@ -14,9 +13,9 @@ export async function login (req: Request, res: Response) : Promise<void> {
             res.status(200).json({ token });
         }
     } catch (error) {
-        res.status(501).json({ message: "Email ou mot de passe incorrect" });
+        res.status(401).json({ message: "Email ou mot de passe incorrect" });
     }
-}
+};
 
 // CONTROLEURS POUR LA CREATION DE COMPTES POUR VISITEURS
 export async function inscription (req: Request, res: Response){
@@ -29,7 +28,7 @@ export async function inscription (req: Request, res: Response){
     } catch (error) {
         res.status(500).json({ message: "Erreur lors de la création du compte" });
     }
-}
+};
 
 // CONTROLLEURS POUR LA RECUPERATION DES INFORMATIONS VISITEURS
 export async function getVisiteurByID (req: Request, res: Response){
@@ -42,7 +41,7 @@ export async function getVisiteurByID (req: Request, res: Response){
     } catch (error) {
         res.status(404).json({ message: "Visiteur non trouvé" });
     }
-}
+};
 
 // CONTROLEURS POUR LA MODIFICATION DES INFORMATIONS VISITEURS
 export async function updateVisiteur (req: Request, res: Response){
@@ -56,7 +55,7 @@ export async function updateVisiteur (req: Request, res: Response){
     } catch (error) {
         res.status(500).json({ message: "Erreur lors de la mise à jour du compte" });
     }
-}
+};
 
 // CONTROLEURS POUR LA SUPPRESSION DES COMPTES VISITEURS
 export async function deleteVisiteur (req: Request, res: Response){
@@ -69,7 +68,7 @@ export async function deleteVisiteur (req: Request, res: Response){
     } catch (error) {
         res.status(500).json({ message: "Erreur lors de la suppression du compte" });
     }
-}
+};
 
 // CONTROLEURS POUR LA RECUPERATION DE TOUS LES VISITEURS (ADMIN UNIQUEMENT)
 export async function getAllVisiteurs (req: Request, res: Response){
@@ -81,4 +80,4 @@ export async function getAllVisiteurs (req: Request, res: Response){
     } catch (error) {
         res.status(500).json({ message: "Erreur lors de la récupération des visiteurs" });
     }
-}
+};

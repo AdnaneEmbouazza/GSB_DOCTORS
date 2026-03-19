@@ -6,7 +6,7 @@ export function getAllFamilles(): Promise<Famille[]> {
 }
 
 export function getFamilleByID (id: string): Promise<Famille> {
-
+    
 } 
 
 export function createFamille (data: CreateFamilleDTO): Promise<Famille> {
