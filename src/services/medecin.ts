@@ -18,6 +18,6 @@ export function updateMedecinByID (id: number, data: UpdateMedecinDTO): Promise<
 
 };
 
-export function deleteFamilleByID (id: number ): Promise<Medecin> {
+export function deleteMedecinByID (id: number ): Promise<Medecin> {
 
 };

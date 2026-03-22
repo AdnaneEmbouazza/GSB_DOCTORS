@@ -14,7 +14,7 @@ export const errorHandler = (err: any, req: Request, res: Response, next: NextFu
         });
     }
     
-    logger.error(`Erreur Serveur : ${err.message}`); // Log de l'erreur serveur
+    logger.error(`Erreur Serveur : [${req.method} ${req.url}] 500 - ${err.message}`); // Log de l'erreur serveur
     res.status(500).json({
         success : false,
         error : "Une erreur interne est survenue. Veuillez réessayer plus tard.",

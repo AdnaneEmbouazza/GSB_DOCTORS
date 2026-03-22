@@ -6,7 +6,7 @@ import logger from "../utils/logger";
 export async function listAllFamilles(req: Request, res: Response): Promise<void> {
     const familles = await familleService.getAllFamilles();
     logger.info(`${familles.length} familles récupérées`);
-    res.json(familles);
+    res.status(200).json(familles);
 }
 
 export async function listFamilleByID(req: Request, res: Response): Promise<void> {
@@ -20,7 +20,7 @@ export async function listFamilleByID(req: Request, res: Response): Promise<void
     }
     
     logger.info(`Famille ${id} récupérée`);
-    res.json(famille);
+    res.status(200).json(famille);
 }
 
 export async function createFamille(req: Request, res: Response): Promise<void> {
@@ -33,7 +33,7 @@ export async function createFamille(req: Request, res: Response): Promise<void> 
     
     const newFamille = await familleService.createFamille(data);
     logger.info(`Nouvelle famille créée`);
-    res.json(newFamille);
+    res.status(201).json(newFamille);
 }
 
 export async function updateFamilleByID(req: Request, res: Response): Promise<void> {
@@ -53,7 +53,7 @@ export async function updateFamilleByID(req: Request, res: Response): Promise<vo
     }
     
     logger.info(`Famille ${id} mise à jour`);
-    res.json(updatedFamille);
+    res.status(200).json(updatedFamille);
 }
 
 export async function deleteFamilleByID(req: Request, res: Response): Promise<void> {
@@ -67,5 +67,5 @@ export async function deleteFamilleByID(req: Request, res: Response): Promise<vo
     }
     
     logger.info(`Famille ${id} supprimée`);
-    res.json(deletedFamille);
+    res.status(200).json(deletedFamille);
 }

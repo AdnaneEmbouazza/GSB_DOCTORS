@@ -1,62 +1,66 @@
 import { Request, Response } from "express";
 import * as medicamentsServices from "../services/medicaments";
+import { NotFoundError, BadRequestError } from "../error";
+import logger from "../utils/logger";
 
-export async function listAllMedicaments(req: Request , res:Response) : Promise<void>{
-    try{
-        const medicaments = await medicamentsServices.getAllMedicaments();
-        if (medicaments){
-            res.json(medicaments);
-        }
-    }catch(error){
-        res.status(500).json({ message: "Erreur lors de la récupération des médicaments" });
+export async function listAllMedicaments(req: Request, res: Response): Promise<void> {
+    const medicaments = await medicamentsServices.getAllMedicaments();
+    logger.info(`${medicaments.length} médicaments récupérés`);
+    res.status(200).json(medicaments);
+}
+
+export async function listMedicamentsByID(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+    const medicament = await medicamentsServices.getMedicamentByID(id);
+    
+    if (!medicament) {
+        logger.warn(`Tentative d'accès à un médicament inexistant : ${id}`);
+        throw new NotFoundError('Médicament non trouvé');
     }
-};
+    
+    logger.info(`Médicament ${id} récupéré`);
+    res.status(200).json(medicament);
+}
 
-export async function listMedicamentsByID(req: Request , res:Response) : Promise<void>{
-    const {id} = req.params;
-    try{
-        const medicament =await medicamentsServices.getMedicamentByID(id);
-        if (medicament){
-            res.json(medicament);
-        }
-    }catch(error){
-        res.status(500).json({ message: "Erreur lors de la récupération du médicament" });
-    }
-};
-
-export async function createMedicament(req: Request , res:Response) : Promise<void>{
+export async function createMedicament(req: Request, res: Response): Promise<void> {
     const data = req.body;
-    try{
-        const newMedicament = await medicamentsServices.createMedicament(data);
-        if (newMedicament){
-            res.json(newMedicament);
-        }
-    }catch(error){
-        res.status(500).json({ message: "Erreur lors de la création du médicament" });
+    
+    if (!data || Object.keys(data).length === 0) {
+        throw new BadRequestError('Les données du médicament sont requises');
     }
-};
+    
+    const newMedicament = await medicamentsServices.createMedicament(data);
+    logger.info(`Nouveau médicament créé`);
+    res.status(201).json(newMedicament);
+}
 
-export async function updateMedicamentByID(req: Request , res:Response) : Promise<void>{
-    const {id} = req.params;
+export async function updateMedicamentByID(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
     const data = req.body;
-    try {
-        const updatedMedicament = await medicamentsServices.updateMedicamentByID(id, data);
-        if (updatedMedicament){
-            res.json(updatedMedicament);
-        }
-    }catch(error){
-        res.status(500).json({ message: "Erreur lors de la mise à jour du médicament" });
+    
+    if (!data || Object.keys(data).length === 0) {
+        throw new BadRequestError('Les données de mise à jour sont requises');
     }
-};
+    
+    const updatedMedicament = await medicamentsServices.updateMedicamentByID(id, data);
+    
+    if (!updatedMedicament) {
+        throw new NotFoundError('Médicament non trouvé');
+    }
+    
+    logger.info(`Médicament ${id} mis à jour`);
+    res.status(200).json(updatedMedicament);
+}
 
-export async function deleteMedicamentByID(req: Request , res:Response) : Promise<void>{
-    const {id} = req.params;
-    try {
-        const deleteMedicamentByID = await medicamentsServices.deleteMedicamentByID(id);
-        if(deleteMedicamentByID){
-            res.json(deleteMedicamentByID);
-        }
-    }catch(error){
-        res.status(500).json({ message: "Erreur lors de la suppression du médicament" });
+export async function deleteMedicamentByID(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+    
+    const deleteMedicamentByID = await medicamentsServices.deleteMedicamentByID(id);
+    
+    if (!deleteMedicamentByID) {
+        throw new NotFoundError('Médicament non trouvé');
     }
-};
+    
+    logger.info(`Médicament ${id} supprimé`);
+    res.status(200).json(deleteMedicamentByID);
+}

@@ -1,62 +1,66 @@
 import { Request, Response } from "express";
 import * as medecinService from "../services/medecin";
+import { NotFoundError, BadRequestError } from "../error";
+import logger from "../utils/logger";
 
-export async function listAllMedecins(req: Request , res:Response) : Promise<void>{
-    try{
-        const medecins = await medecinService.getAllMedecins();
-        if (medecins){
-            res.json(medecins);
-        }
-    }catch(error){
-        res.status(500).json({ message: "Erreur lors de la récupération des médecins" });
+export async function listAllMedecins(req: Request, res: Response): Promise<void> {
+    const medecins = await medecinService.getAllMedecins();
+    logger.info(`${medecins.length} médecins récupérés`);
+    res.status(200).json(medecins);
+}
+
+export async function listMedecinsByID(req: Request, res: Response): Promise<void> {
+    const id = req.params.id;
+    const medecin = await medecinService.getMedecinByID(id);
+    
+    if (!medecin) {
+        logger.warn(`Tentative d'accès à un médecin inexistant : ${id}`);
+        throw new NotFoundError('Médecin non trouvé');
     }
-};
+    
+    logger.info(`Médecin ${id} récupéré`);
+    res.status(200).json(medecin);
+}
 
-export async function listMedecinsByID(req : Request , res:Response) : Promise<void>{
-    try{
-        const id = req.params.id;
-        const medecin = await medecinService.getMedecinByID(id);
-        if(medecin){
-            res.json(medecin);
-        }
-    }catch(error){
-        res.status(404).json({ message: "Médecin non trouvé" });
-    }
-};
-
-export async function createMedecin(req: Request , res:Response) : Promise<void>{
+export async function createMedecin(req: Request, res: Response): Promise<void> {
     const data = req.body;
-    try{
-        const newMedecin = await medecinService.createMedecin(data);
-        if (newMedecin) {
-            res.json(newMedecin);
-        }
-    }catch(error){
-        res.status(500).json({ message: "Erreur lors de la création du médecin" });
+    
+    if (!data || Object.keys(data).length === 0) {
+        throw new BadRequestError('Les données du médecin sont requises');
     }
-};
+    
+    const newMedecin = await medecinService.createMedecin(data);
+    logger.info(`Nouveau médecin créé`);
+    res.status(201).json(newMedecin);
+}
 
-export async function updateMedecinByID(req: Request , res:Response) : Promise<void>{
+export async function updateMedecinByID(req: Request, res: Response): Promise<void> {
     const id = req.params.id;
     const data = req.body;
-    try{
-        const updateMedecin = await medecinService.updateMedecinByID(id, data);
-        if (updateMedecin) {
-            res.json(updateMedecin);
-        }
-    }catch(error){
-        res.status(500).json({ message: "Erreur lors de la mise à jour du médecin" });
+    
+    if (!data || Object.keys(data).length === 0) {
+        throw new BadRequestError('Les données de mise à jour sont requises');
     }
-};
+    
+    const updateMedecin = await medecinService.updateMedecinByID(id, data);
+    
+    if (!updateMedecin) {
+        throw new NotFoundError('Médecin non trouvé');
+    }
+    
+    logger.info(`Médecin ${id} mis à jour`);
+    res.status(200).json(updateMedecin);
+}
 
-export async function deleteMedecinByID(req: Request , res:Response) : Promise<void>{
+export async function deleteMedecinByID(req: Request, res: Response): Promise<void> {
     const id = req.params.id;
-    try{
-        const deleteMedecin = await medecinService.deleteFamilleByID(id);
-        if(deleteMedecin){
-            res.json(deleteMedecin);
-        }
-    }catch(error){
-        res.status(500).json({ message: "Erreur lors de la suppression du médecin" });
+    
+    const deleteMedecin = await medecinService.deleteMedecinByID(id);
+    
+    if (!deleteMedecin) {
+        throw new NotFoundError('Médecin non trouvé');
     }
-};
+    
+    logger.info(`Médecin ${id} supprimé`);
+    res.status(200).json(deleteMedecin);
+}

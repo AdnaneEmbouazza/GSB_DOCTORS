@@ -1,83 +1,91 @@
 import { Request, Response } from "express";
 import * as visiteurService from "../services/visiteur";
+import { UnauthorizedError, BadRequestError, NotFoundError } from "../error";
+import logger from "../utils/logger";
 
-// CONTROLEURS POUR LES CONNEXIONS DES VISITEURS
-export async function login (req: Request, res: Response) : Promise<void> {
+export async function login(req: Request, res: Response): Promise<void> {
     const { email, password } = req.body;
-    try {
-        // Appeler le service de connexion pour vérifier les informations d'identification
-        const token = await visiteurService.login(email, password);
 
-        // Si la connexion est réussie, retourner un token d'authentification
-        if(token){
-            res.status(200).json({ token });
-        }
-    } catch (error) {
-        res.status(401).json({ message: "Email ou mot de passe incorrect" });
+    // Gestion erreur 400 (donnés manquantes)
+    if (!email || !password) {
+        throw new BadRequestError('Email et mot de passe sont requis');
     }
-};
+    
+    const token = await visiteurService.login(email, password);
+    
+    // Gestion erreur 401 (authentification échouée)
+    if (!token) {
+        logger.warn(`Tentative de connexion échouée pour ${email}`);
+        throw new UnauthorizedError('Email ou mot de passe incorrect');
+    }
+    
+    logger.info(`Visiteur ${email} connecté`);
+    res.status(200).json({ token });
+}
 
-// CONTROLEURS POUR LA CREATION DE COMPTES POUR VISITEURS
-export async function inscription (req: Request, res: Response){
+export async function inscription(req: Request, res: Response): Promise<void> {
     const data = req.body;
-    try {
-        const visiteur = await visiteurService.createVisiteur(data);
-        if(visiteur){
-            res.status(201).json(visiteur);
-        }
-    } catch (error) {
-        res.status(500).json({ message: "Erreur lors de la création du compte" });
+    
+    // Gestion erreur 400 (donnés manquantes ou invalides)
+    if (!data || Object.keys(data).length === 0) {
+        throw new BadRequestError('Les données de visiteur sont requises');
     }
-};
+    
+    const visiteur = await visiteurService.createVisiteur(data);
+    logger.info(`Nouveau visiteur inscrit`);
+    res.status(201).json(visiteur);
+}
 
-// CONTROLLEURS POUR LA RECUPERATION DES INFORMATIONS VISITEURS
-export async function getVisiteurByID (req: Request, res: Response){
-    const {id} = req.params;
-    try {
-        const visiteur = await visiteurService.getVisiteurByID(id);
-        if(visiteur){
-            res.status(200).json(visiteur);
-        }
-    } catch (error) {
-        res.status(404).json({ message: "Visiteur non trouvé" });
+export async function getVisiteurByID(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+    const visiteur = await visiteurService.getVisiteurByID(id);
+    
+    // gestion erreur 404 (non trouvé)
+    if (!visiteur) {
+        logger.warn(`Tentative d'accès à un visiteur inexistant : ${id}`);
+        throw new NotFoundError('Visiteur non trouvé');
     }
-};
+    
+    logger.info(`Visiteur ${id} récupéré`);
+    res.status(200).json(visiteur);
+}
 
-// CONTROLEURS POUR LA MODIFICATION DES INFORMATIONS VISITEURS
-export async function updateVisiteur (req: Request, res: Response){
-    const {id} = req.params;
+export async function updateVisiteur(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
     const data = req.body;
-    try {
-        const visiteur = await visiteurService.updateVisiteurByID(id, data);
-        if(visiteur){
-            res.status(200).json(visiteur);
-        }
-    } catch (error) {
-        res.status(500).json({ message: "Erreur lors de la mise à jour du compte" });
+    
+    // Gestion erreur 400 (donnés manquantes ou invalides)
+    if (!data || Object.keys(data).length === 0) {
+        throw new BadRequestError('Les données de mise à jour sont requises');
     }
-};
+    
+    const visiteur = await visiteurService.updateVisiteurByID(id, data);
+    
+    // gestion erreur 404 (non trouvé)
+    if (!visiteur) {
+        throw new NotFoundError('Visiteur non trouvé');
+    }
+    
+    logger.info(`Visiteur ${id} mis à jour`);
+    res.status(200).json(visiteur);
+}
 
-// CONTROLEURS POUR LA SUPPRESSION DES COMPTES VISITEURS
-export async function deleteVisiteur (req: Request, res: Response){
-    const {id} = req.params;
-    try {
-        const visiteur = await visiteurService.deleteVisiteurByID(id);
-        if (visiteur) {
-        res.status(200).json(visiteur);
-        }
-    } catch (error) {
-        res.status(500).json({ message: "Erreur lors de la suppression du compte" });
+export async function deleteVisiteur(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+    
+    const visiteur = await visiteurService.deleteVisiteurByID(id);
+    
+    // gestion erreur 404 (non trouvé)
+    if (!visiteur) {
+        throw new NotFoundError('Visiteur non trouvé');
     }
-};
+    
+    logger.info(`Visiteur ${id} supprimé`);
+    res.status(200).json(visiteur);
+}
 
-// CONTROLEURS POUR LA RECUPERATION DE TOUS LES VISITEURS (ADMIN UNIQUEMENT)
-export async function getAllVisiteurs (req: Request, res: Response){
-    try {
-        const visiteurs = await visiteurService.getAllVisiteurs();
-        if (visiteurs) {
-        res.status(200).json(visiteurs);
-        }
-    } catch (error) {
-        res.status(500).json({ message: "Erreur lors de la récupération des visiteurs" });
-    }
-};
+export async function getAllVisiteurs(req: Request, res: Response): Promise<void> {
+    const visiteurs = await visiteurService.getAllVisiteurs();
+    logger.info(`${visiteurs.length} visiteurs récupérés`);
+    res.status(200).json(visiteurs);
+}
