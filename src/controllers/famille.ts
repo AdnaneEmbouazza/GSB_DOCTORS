@@ -27,11 +27,11 @@ export async function listFamilleByID(req: Request, res: Response): Promise<void
 export async function createFamille(req: Request, res: Response): Promise<void> {
     const data : CreateFamilleDTO = req.body;
 
+    // Gestion erreur 400 (donnés manquantes ou invalides)
     if( !data.id || !data.libelle ) {
         throw new BadRequestError('Les champs id et libelle sont requis');
     }
     
-    // Gestion erreur 400 (donnés manquantes ou invalides)
     if (!data || Object.keys(data).length === 0) {
         throw new BadRequestError('Les données de la famille sont requises');
     }

@@ -1,6 +1,6 @@
 
 export interface Visiteur {
-  id: string;
+  id: number;
   nom: string;
   prenom: string;
   login: string;

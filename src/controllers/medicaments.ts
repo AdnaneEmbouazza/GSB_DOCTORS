@@ -26,12 +26,12 @@ export async function listMedicamentsByID(req: Request, res: Response): Promise<
 export async function createMedicament(req: Request, res: Response): Promise<void> {
     const data : CreateMedicamentDTO = req.body;
 
-    if (!data.id || !data.nomCommercial || !data.idFamille || !data.composition || !data.effets || !data.contreIndications) {
-        throw new BadRequestError('Les champs id, nomCommercial, famille, composition effets et contre-indications sont requis');
-    }
-
     if (!data || Object.keys(data).length === 0) {
         throw new BadRequestError('Les données du médicament sont requises');
+    }
+
+    if (!data.id || !data.nomCommercial || !data.idFamille || !data.composition || !data.effets || !data.contreIndications) {
+        throw new BadRequestError('Les champs id, nomCommercial, famille, composition effets et contre-indications sont requis');
     }
     
     const newMedicament = await medicamentsServices.createMedicament(data);

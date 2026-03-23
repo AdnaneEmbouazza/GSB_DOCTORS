@@ -8,7 +8,7 @@ export async function login(req: Request, res: Response): Promise<void> {
     const { login, mdp } : LoginDTO = req.body;
 
     // Gestion erreur 400 (donnés manquantes)
-    if (!login || !mdp) {
+    if (!login?.trim() || !mdp?.trim()) {
         throw new BadRequestError('Login et mot de passe sont requis');
     }
     

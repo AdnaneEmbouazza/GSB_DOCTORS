@@ -3,7 +3,7 @@ export interface Rapport {
   date: string; // format: YYYY-MM-DD
   motif: string;
   bilan: string;
-  idVisiteur: string;
+  idVisiteur: number;
   idMedecin: number;
 };
 
@@ -12,7 +12,7 @@ export interface CreateRapportDTO {
   date: string; // format: YYYY-MM-DD
   motif: string;
   bilan: string;
-  idVisiteur: string;
+  idVisiteur: number;
   idMedecin: number;
   // ID auto incrémenté
 };
@@ -22,7 +22,7 @@ export interface UpdateRapportDTO {
   date?: string;
   motif?: string;
   bilan?: string;
-  idVisiteur?: string;
+  idVisiteur?: number;
   idMedecin?: number;
   //ID non modifiable
 };

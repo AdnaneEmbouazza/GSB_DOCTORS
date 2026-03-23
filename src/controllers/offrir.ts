@@ -13,8 +13,8 @@ export async function listAllOffre(req: Request, res: Response): Promise<void> {
 };
 
 export async function listOffreByID(req: Request, res: Response): Promise<void> {
-    const idrapport = Number(req.params.idrapport);
-    const idmedicament = req.params.idmedicament as string;
+    const idrapport = Number(req.params.idRapport);
+    const idmedicament = req.params.idMedicament as string;
     const offre = await offrirService.getOffreByID(idrapport, idmedicament);
     
     if (!offre) {
@@ -29,7 +29,7 @@ export async function listOffreByID(req: Request, res: Response): Promise<void> 
 export async function createOffre(req: Request, res: Response): Promise<void> {
     const data : CreateOffrirDTO = req.body;
     
-    if (!data || Object.keys(data).length === 0) {
+    if (!data.idMedicament || data.idRapport === undefined || data.quantite === undefined) {
         throw new BadRequestError('Les données de l\'offre sont requises');
     }
     
@@ -39,8 +39,8 @@ export async function createOffre(req: Request, res: Response): Promise<void> {
 };
 
 export async function updateOffreByID(req: Request, res: Response): Promise<void> {
-    const idrapport = Number(req.params.idrapport);
-    const idmedicament = req.params.idmedicament as string;
+    const idrapport = Number(req.params.idRapport);
+    const idmedicament = req.params.idMedicament as string;
     const data : UpdateOffrirDTO = req.body;
     
     if (!data || Object.keys(data).length === 0) {
@@ -58,8 +58,8 @@ export async function updateOffreByID(req: Request, res: Response): Promise<void
 };
 
 export async function deleteOffreByID(req: Request, res: Response): Promise<void> {
-    const idrapport = Number(req.params.idrapport);
-    const idmedicament = req.params.idmedicament as string;
+    const idrapport = Number(req.params.idRapport);
+    const idmedicament = req.params.idMedicament as string;
     
     const offre = await offrirService.deleteOffreByID(idrapport, idmedicament);
     
