@@ -1,31 +1,36 @@
 import { Request, Response } from "express";
 import * as visiteurService from "../services/visiteur";
 import { UnauthorizedError, BadRequestError, NotFoundError } from "../error";
+import { UpdateVisiteurDTO , CreateVisiteurDTO , LoginDTO } from "../models/visiteur";
 import logger from "../utils/logger";
 
 export async function login(req: Request, res: Response): Promise<void> {
-    const { email, password } = req.body;
+    const { login, mdp } : LoginDTO = req.body;
 
     // Gestion erreur 400 (donnés manquantes)
-    if (!email || !password) {
-        throw new BadRequestError('Email et mot de passe sont requis');
+    if (!login || !mdp) {
+        throw new BadRequestError('Login et mot de passe sont requis');
     }
     
-    const token = await visiteurService.login(email, password);
+    const token = await visiteurService.login(login, mdp);
     
     // Gestion erreur 401 (authentification échouée)
     if (!token) {
-        logger.warn(`Tentative de connexion échouée pour ${email}`);
-        throw new UnauthorizedError('Email ou mot de passe incorrect');
+        logger.warn(`Tentative de connexion échouée pour ${login}`);
+        throw new UnauthorizedError('Login ou mot de passe incorrect');
     }
     
-    logger.info(`Visiteur ${email} connecté`);
+    logger.info(`Visiteur ${login} connecté`);
     res.status(200).json({ token });
-}
+};
 
 export async function inscription(req: Request, res: Response): Promise<void> {
-    const data = req.body;
-    
+    const data : CreateVisiteurDTO = req.body;
+
+    if (!data.nom || !data.prenom || !data.login || !data.mdp || !data.adresse || !data.cp || !data.ville || !data.dateEmbauche) {
+        throw new BadRequestError('Tous les champs sont requis');
+    }
+
     // Gestion erreur 400 (donnés manquantes ou invalides)
     if (!data || Object.keys(data).length === 0) {
         throw new BadRequestError('Les données de visiteur sont requises');
@@ -34,10 +39,10 @@ export async function inscription(req: Request, res: Response): Promise<void> {
     const visiteur = await visiteurService.createVisiteur(data);
     logger.info(`Nouveau visiteur inscrit`);
     res.status(201).json(visiteur);
-}
+};
 
 export async function getVisiteurByID(req: Request, res: Response): Promise<void> {
-    const { id } = req.params;
+    const  id  = Number(req.params.id);
     const visiteur = await visiteurService.getVisiteurByID(id);
     
     // gestion erreur 404 (non trouvé)
@@ -48,11 +53,11 @@ export async function getVisiteurByID(req: Request, res: Response): Promise<void
     
     logger.info(`Visiteur ${id} récupéré`);
     res.status(200).json(visiteur);
-}
+};
 
 export async function updateVisiteur(req: Request, res: Response): Promise<void> {
-    const { id } = req.params;
-    const data = req.body;
+    const id = Number(req.params.id);
+    const data : UpdateVisiteurDTO = req.body;
     
     // Gestion erreur 400 (donnés manquantes ou invalides)
     if (!data || Object.keys(data).length === 0) {
@@ -68,10 +73,10 @@ export async function updateVisiteur(req: Request, res: Response): Promise<void>
     
     logger.info(`Visiteur ${id} mis à jour`);
     res.status(200).json(visiteur);
-}
+};
 
 export async function deleteVisiteur(req: Request, res: Response): Promise<void> {
-    const { id } = req.params;
+    const id = Number(req.params.id);
     
     const visiteur = await visiteurService.deleteVisiteurByID(id);
     
@@ -82,10 +87,10 @@ export async function deleteVisiteur(req: Request, res: Response): Promise<void>
     
     logger.info(`Visiteur ${id} supprimé`);
     res.status(200).json(visiteur);
-}
+};
 
 export async function getAllVisiteurs(req: Request, res: Response): Promise<void> {
     const visiteurs = await visiteurService.getAllVisiteurs();
     logger.info(`${visiteurs.length} visiteurs récupérés`);
     res.status(200).json(visiteurs);
-}
+};

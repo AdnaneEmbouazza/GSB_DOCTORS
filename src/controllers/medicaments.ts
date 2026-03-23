@@ -2,15 +2,16 @@ import { Request, Response } from "express";
 import * as medicamentsServices from "../services/medicaments";
 import { NotFoundError, BadRequestError } from "../error";
 import logger from "../utils/logger";
+import { CreateMedicamentDTO, UpdateMedicamentDTO } from "../models/medicaments";
 
 export async function listAllMedicaments(req: Request, res: Response): Promise<void> {
     const medicaments = await medicamentsServices.getAllMedicaments();
     logger.info(`${medicaments.length} médicaments récupérés`);
     res.status(200).json(medicaments);
-}
+};
 
 export async function listMedicamentsByID(req: Request, res: Response): Promise<void> {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
     const medicament = await medicamentsServices.getMedicamentByID(id);
     
     if (!medicament) {
@@ -20,11 +21,15 @@ export async function listMedicamentsByID(req: Request, res: Response): Promise<
     
     logger.info(`Médicament ${id} récupéré`);
     res.status(200).json(medicament);
-}
+};
 
 export async function createMedicament(req: Request, res: Response): Promise<void> {
-    const data = req.body;
-    
+    const data : CreateMedicamentDTO = req.body;
+
+    if (!data.id || !data.nomCommercial || !data.idFamille || !data.composition || !data.effets || !data.contreIndications) {
+        throw new BadRequestError('Les champs id, nomCommercial, famille, composition effets et contre-indications sont requis');
+    }
+
     if (!data || Object.keys(data).length === 0) {
         throw new BadRequestError('Les données du médicament sont requises');
     }
@@ -32,11 +37,11 @@ export async function createMedicament(req: Request, res: Response): Promise<voi
     const newMedicament = await medicamentsServices.createMedicament(data);
     logger.info(`Nouveau médicament créé`);
     res.status(201).json(newMedicament);
-}
+};
 
 export async function updateMedicamentByID(req: Request, res: Response): Promise<void> {
-    const { id } = req.params;
-    const data = req.body;
+    const { id } = req.params as { id: string };
+    const data : UpdateMedicamentDTO = req.body;
     
     if (!data || Object.keys(data).length === 0) {
         throw new BadRequestError('Les données de mise à jour sont requises');
@@ -50,10 +55,10 @@ export async function updateMedicamentByID(req: Request, res: Response): Promise
     
     logger.info(`Médicament ${id} mis à jour`);
     res.status(200).json(updatedMedicament);
-}
+};
 
 export async function deleteMedicamentByID(req: Request, res: Response): Promise<void> {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
     
     const deleteMedicamentByID = await medicamentsServices.deleteMedicamentByID(id);
     
@@ -63,4 +68,4 @@ export async function deleteMedicamentByID(req: Request, res: Response): Promise
     
     logger.info(`Médicament ${id} supprimé`);
     res.status(200).json(deleteMedicamentByID);
-}
+};

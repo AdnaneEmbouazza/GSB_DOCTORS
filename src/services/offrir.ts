@@ -6,7 +6,7 @@ export function getAllOffre(): Promise<Offrir[]> {
 
 };
 
-export function getOffreByID (id: number): Promise<Offrir> {
+export function getOffreByID (idrapport: number, idmedicament: string): Promise<Offrir> {
 
 };
 
@@ -14,10 +14,10 @@ export function createOffre (data: CreateOffrirDTO): Promise<Offrir> {
 
 };
 
-export function updateOffreById (id: number, data: UpdateOffrirDTO): Promise<Offrir> {
+export function updateOffreById (idrapport: number, idmedicament: string, data: UpdateOffrirDTO): Promise<Offrir> {
 
 };
 
-export function deleteOffreByID (id: number ): Promise<Offrir> {
+export function deleteOffreByID (idrapport: number, idmedicament: string): Promise<Offrir> {
 
 };

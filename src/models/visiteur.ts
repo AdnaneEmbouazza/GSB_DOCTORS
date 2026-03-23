@@ -11,6 +11,11 @@ export interface Visiteur {
   dateEmbauche: string;
 };
 
+export interface LoginDTO {
+  login: string;
+  mdp: string;
+};
+
 // Pour la création (POST)
 export interface CreateVisiteurDTO {
   nom: string;
