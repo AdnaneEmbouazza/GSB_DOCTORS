@@ -31,9 +31,7 @@ export function createVisiteur (data: CreateVisiteurDTO): Promise<Visiteur> {
             adresse: data.adresse,
             cp: data.cp,
             ville: data.ville,
-            dateembauche: new Date(data.dateEmbauche),
-            timespan: 0,
-            ticket: null
+            dateembauche: new Date(data.dateEmbauche)
         }
     });
 }

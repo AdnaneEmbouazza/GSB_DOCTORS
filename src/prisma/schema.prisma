@@ -50,14 +50,13 @@ model Visiteur {
   id                   Int          @id @default(autoincrement())
   nom                  String?      @db.VarChar(30)
   prenom               String?      @db.VarChar(30)
-  login                String?      @db.VarChar(20)
-  mdp                  String?      @db.VarChar(20)
+  login                String       @db.VarChar(20)
+  mdp                  String       @db.VarChar(255)  // Hash bcrypt du mot de passe
   adresse              String?      @db.VarChar(30)
   cp                   String?      @db.VarChar(5)
   ville                String?      @db.VarChar(30)
   dateembauche         DateTime?
-  timespan             Int
-  ticket               String?      @db.VarChar(50)
+  refreshToken         String?      @db.VarChar(500)  // JWT refresh token
 
   rapport             Rapport[]     // relation avec le modèle RAPPORT => tout les rapports relié à un visiteur
 }

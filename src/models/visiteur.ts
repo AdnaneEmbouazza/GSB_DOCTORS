@@ -1,14 +1,15 @@
 
 export interface Visiteur {
   id: number;
-  nom: string;
-  prenom: string;
+  nom: string | null;
+  prenom: string | null;
   login: string;
   mdp: string;
-  adresse: string;
-  cp: string;
-  ville: string;
-  dateEmbauche: string;
+  adresse: string | null;
+  cp: string | null;
+  ville: string | null;
+  dateEmbauche: Date | null;
+  refreshToken: string | null;
 };
 
 export interface LoginDTO {
