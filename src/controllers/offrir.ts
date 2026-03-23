@@ -29,7 +29,7 @@ export async function listOffreByID(req: Request, res: Response): Promise<void> 
 export async function createOffre(req: Request, res: Response): Promise<void> {
     const data : CreateOffrirDTO = req.body;
     
-    if (!data.idMedicament || data.idRapport === undefined || data.quantite === undefined) {
+    if (!data.idMedicament || data.idRapport === undefined ) {
         throw new BadRequestError('Les données de l\'offre sont requises');
     }
     

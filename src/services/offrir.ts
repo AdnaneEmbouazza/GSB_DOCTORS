@@ -1,4 +1,4 @@
-import { Offrir } from '../client/generated/prisma';
+import { Offrir } from '../client/generated/prisma/client';
 import prisma from '../prisma';
 import { CreateOffrirDTO , UpdateOffrirDTO} from '../models/offrir';
 

@@ -1,4 +1,4 @@
-import { Visiteur } from "../client/generated/prisma";
+import { Visiteur } from "../client/generated/prisma/client";
 import prisma from "../prisma";
 import {CreateVisiteurDTO , UpdateVisiteurDTO } from "../models/visiteur";
 

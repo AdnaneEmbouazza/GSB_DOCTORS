@@ -1,4 +1,4 @@
-import { Medicament } from '../client/generated/prisma';
+import { Medicament } from '../client/generated/prisma/client';
 import prisma from '../prisma';
 import { CreateMedicamentDTO , UpdateMedicamentDTO} from '../models/medicaments';
 

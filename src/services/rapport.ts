@@ -1,4 +1,4 @@
-import { Rapport } from '../client/generated/prisma';
+import { Rapport } from '../client/generated/prisma/client';
 import prisma from '../prisma';
 import { CreateRapportDTO, UpdateRapportDTO} from '../models/rapport';
 
