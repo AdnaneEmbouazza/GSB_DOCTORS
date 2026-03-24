@@ -2,8 +2,8 @@ import { Visiteur } from "@prisma/client";
 import prisma from "../prisma";
 import {CreateVisiteurDTO , UpdateVisiteurDTO } from "../models/visiteur";
 import { hashPassword, comparePassword } from "../utils/bcrypt";
-import { generateAccessToken, verifyAccessToken, TokenPayload } from "../utils/token";
-import { UnauthorizedError, NotFoundError } from "../error";
+import { generateAccessToken, TokenPayload } from "../utils/token";
+import { UnauthorizedError } from "../error";
 
 // getAllVisiteurs : renvoie une liste de tous les visiteurs
 export function getAllVisiteurs(): Promise<Visiteur[]> {
