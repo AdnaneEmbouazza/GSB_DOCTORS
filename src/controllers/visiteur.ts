@@ -14,12 +14,6 @@ export async function login(req: Request, res: Response): Promise<void> {
     
     const token = await visiteurService.login(login, mdp);
     
-    // Gestion erreur 401 (authentification échouée)
-    if (!token) {
-        logger.warn(`Tentative de connexion échouée pour ${login}`);
-        throw new UnauthorizedError('Login ou mot de passe incorrect');
-    }
-    
     logger.info(`Visiteur ${login} connecté`);
     res.status(200).json({ token });
 };
