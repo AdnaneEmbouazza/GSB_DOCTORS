@@ -45,7 +45,7 @@ router.get('/rapports' , isloggedOn , asyncHandler(rapportControleur.listAllRapp
 
 /**
  * @swagger
- * /api/rapports/{id}:
+ * /api/rapport/{id}:
  *   get:
  *     summary: Récupérer un rapport par ID
  *     description: Retourne les détails d'un rapport spécifique
@@ -72,7 +72,7 @@ router.get('/rapport/:id' , isloggedOn , asyncHandler(rapportControleur.listRapp
 
 /**
  * @swagger
- * /api/rapports:
+ * /api/rapport:
  *   post:
  *     summary: Créer un nouveau rapport
  *     description: Crée un nouveau rapport de visite
@@ -113,7 +113,7 @@ router.post('/rapport' , isloggedOn , asyncHandler(rapportControleur.createRappo
 
 /**
  * @swagger
- * /api/rapports/{id}:
+ * /api/rapport/{id}:
  *   put:
  *     summary: Modifier un rapport
  *     description: Met à jour les informations d'un rapport existant
@@ -154,7 +154,7 @@ router.put('/rapport/:id' , isloggedOn , asyncHandler(rapportControleur.updateRa
 
 /**
  * @swagger
- * /api/rapports/{id}:
+ * /api/rapport/{id}:
  *   delete:
  *     summary: Supprimer un rapport
  *     description: Supprime un rapport de la base de données
