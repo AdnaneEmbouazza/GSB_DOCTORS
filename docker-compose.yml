@@ -11,6 +11,7 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+      - ./script_sql:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -31,7 +32,7 @@ services:
     environment:
       NODE_ENV: development
       DATABASE_URL: mysql://ADN:FeKl%KfF*Bp6J:p$:%NF@db:3306/gsbrapports
-    command: bash -c "apt-get update && apt-get install -y default-mysql-client && npm install && bash scripts/init-db.sh"
+    command: bash -c "npm install && npx prisma generate && npm run dev"
     depends_on:
       db:
         condition: service_healthy

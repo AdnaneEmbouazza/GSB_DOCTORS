@@ -622,8 +622,7 @@ INSERT INTO `medecin` (`nom`, `prenom`, `adresse`, `tel`, `specialitecomplementa
 ('CARBONE', 'Anselme', '89 rue de la rose THIN-LE-MOUTIER 08460', '0329785730', NULL, 8),
 ('BONO', 'Firmin', '36 rue Blainville MAYOT 02800', '0335413346', NULL, 2),
 ('ALLIONE', 'Hypolite', '77 rue de Paris OYONNAX 01100', '0445547469', NULL, 1),
-('POURCHIER', 'Cristophe', '24 rue de la Pergolat THIN-LE-MOUTIER 08460', '0394637980', NULL, 8);
-INSERT INTO `medecin` (`id`, `nom`, `prenom`, `adresse`, `tel`, `specialitecomplementaire`, `departement`) VALUES
+('POURCHIER', 'Cristophe', '24 rue de la Pergolat THIN-LE-MOUTIER 08460', '0394637980', NULL, 8),
 ('PAGANO', 'Habib', '28 rue des Chantereines FEPIN 08170', '0370382521', NULL, 8),
 ('ROGER', 'Amiel', '14 rue Petit AUBENTON 02500', '0324206273', NULL, 2),
 ('SAVELLI', 'BÃ©atrice', '34 rue de la rose AVANCON 05230', '0441382007', NULL, 5),
@@ -2649,8 +2648,7 @@ INSERT INTO `rapport` (`date`, `motif`, `bilan`, `idVisiteur`, `idMedecin`) VALU
 ('2017-02-15', 'recommandation de confrÃ¨re', 'Peu bavard', 26, 18),
 ('2017-02-06', 'Prise de contact', 'Trop pressÃ©', 12, 19),
 ('2017-03-22', 'recommandation de confrÃ¨re', 'Peu bavard', 8, 20),
-('2017-03-10', 'Installation nouvelle', 'A revoir assez rapidement', 5, 21);
-INSERT INTO `rapport` (`id`, `date`, `motif`, `bilan`, `idVisiteur`, `idMedecin`) VALUES
+('2017-03-10', 'Installation nouvelle', 'A revoir assez rapidement', 5, 21),
 ('2016-11-24', 'Visite annuelle', 'TrÃ¨s fixÃ© sur les produits utilisÃ©s', 15, 22),
 ('2016-11-10', 'Visite annuelle', 'Peu intÃ©ressÃ©', 13, 23),
 ('2017-03-05', 'Installation nouvelle', 'Trop pressÃ©', 17, 24),
@@ -3265,8 +3263,7 @@ INSERT INTO `rapport` (`id`, `date`, `motif`, `bilan`, `idVisiteur`, `idMedecin`
 ('2017-03-26', 'Demande du mÃ©decin', 'Pas en confiance', 9, 633),
 ('2016-12-27', 'Visite annuelle', 'Visite positive', 1, 634),
 ('2016-11-17', 'Visite annuelle', 'TrÃ¨s intÃ©ressÃ© par les produits prÃ©sentÃ©s', 16, 635),
-('2016-10-02', 'Demande du mÃ©decin', 'A revoir assez rapidement', 19, 636);
-INSERT INTO `rapport` (`id`, `date`, `motif`, `bilan`, `idVisiteur`, `idMedecin`) VALUES
+('2016-10-02', 'Demande du mÃ©decin', 'A revoir assez rapidement', 19, 636),
 ('2017-04-05', 'Visite annuelle', 'TrÃ¨s aimable maintenir un contact rÃ©gulier', 9, 637),
 ('2017-04-07', 'Installation nouvelle', 'Pas trÃ¨s aimable', 13, 638),
 ('2017-03-14', 'Visite annuelle', 'Demande Ã  me revoir dans un mois', 18, 639),
@@ -3659,10 +3656,13 @@ INSERT INTO `visiteur` (`nom`, `prenom`, `login`, `mdp`, `adresse`, `cp`, `ville
 ('Cacheux', 'Bernard', 'bcacheux', 'uf7r3', '114 rue Blanche', '75017', 'Paris', '2009-11-12'),
 ('Cadic', 'Eric', 'ecadic', '6u8dc', '123 avenue de la République', '75011', 'Paris', '2008-09-23'),
 ('Charoze', 'Catherine', 'ccharoze', 'u817o', '100 rue Petit', '75019', 'Paris', '2005-11-12'),
+('Clepkens', 'Christophe', 'cclepkens', 'bw1us', '12 allée des Anges', '93230', 'Romainville', '2003-08-11'),
 ('Cottin', 'Vincenne', 'vcottin', '2hoh9', '36 rue Des Roches', '93100', 'Monteuil', '2001-11-18'),
 ('Daburon', 'François', 'fdaburon', '7oqpv', '13 rue de Chanzy', '94000', 'Créteil', '2002-02-11'),
 ('De', 'Philippe', 'pde', 'gk9kx', '13 rue Barthes', '94000', 'Créteil', '2010-12-14'),
 ('Debelle', 'Michel', 'mdebelle', 'od5rt', '181 avenue Barbusse', '93210', 'Rosny', '2006-11-23'),
+('Debelle', 'Jeanne', 'jdebelle', 'nvwqq', '134 allée des Joncs', '44000', 'Nantes', '2000-05-11'),
+('Debroise', 'Michel', 'mdebroise', 'sghkb', '2 Bld Jourdain', '44000', 'Nantes', '2001-04-17'),
 ('Desmarquest', 'Nathalie', 'ndesmarquest', 'f1fob', '14 Place d Arc', '45000', 'Orléans', '2005-11-12'),
 ('Desnost', 'Pierre', 'pdesnost', '4k2o5', '16 avenue des Cèdres', '23200', 'Guéret', '2001-02-05'),
 ('Dudouit', 'Frédéric', 'fdudouit', '44im8', '18 rue de l église', '23120', 'GrandBourg', '2000-08-01'),
