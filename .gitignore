@@ -1,3 +1,6 @@
 /node_modules 
 /.env
 src/client/generated/prisma
+script_sql/rapport_clean.sql
+script_sql/temp.sql
+script_sql/medecin_clean.sql
