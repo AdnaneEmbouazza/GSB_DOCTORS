@@ -7,10 +7,13 @@ export function getAllMedecins(): Promise<Medecin[]> {
     return prisma.medecin.findMany();
 };
 
-// getMedecinByID : renvoie un medecin en fonction de son ID
-export function getMedecinByID (id: number): Promise<Medecin | null> {
+// getMedecinByID : renvoie un medecin en fonction de son ID avec ses rapports
+export function getMedecinByID (id: number) {
     return prisma.medecin.findUnique({
-        where: { id }
+        where: { id },
+        include: {
+            rapport: true  // Inclure tous les rapports liés à ce médecin
+        }
     });
 };
 

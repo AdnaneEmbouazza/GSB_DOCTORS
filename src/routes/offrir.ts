@@ -9,8 +9,8 @@ const router = Router();
  * @swagger
  * /api/offrir:
  *   get:
- *     summary: Récupérer la liste de toutes les offres
- *     description: Retourne la liste complète de toutes les offres (médicaments offerts dans les rapports)
+ *     summary: Récupérer vos offres
+ *     description: Retourne la liste de toutes les offres liées aux rapports de l'utilisateur connecté
  *     security:
  *       - BearerAuth: []
  *     tags:
@@ -40,8 +40,8 @@ router.get('/offrir' ,isloggedOn , asyncHandler(offrirControlleur.listAllOffre))
  * @swagger
  * /api/offrir/{idRapport}/{idMedicament}:
  *   get:
- *     summary: Récupérer une offre par ID
- *     description: Retourne les détails d'une offre spécifique
+ *     summary: Récupérer une offre d'un de vos rapports
+ *     description: Retourne les détails d'une offre si elle appartient à un de vos rapports
  *     security:
  *       - BearerAuth: []
  *     tags:
@@ -52,7 +52,7 @@ router.get('/offrir' ,isloggedOn , asyncHandler(offrirControlleur.listAllOffre))
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID du rapport
+ *         description: ID de votre rapport
  *       - in: path
  *         name: idMedicament
  *         required: true
@@ -65,7 +65,7 @@ router.get('/offrir' ,isloggedOn , asyncHandler(offrirControlleur.listAllOffre))
  *       404:
  *         description: Offre non trouvée
  *       401:
- *         description: Non authentifié
+ *         description: Non authentifié ou offre n'appartient pas à vos rapports
  */
 router.get('/offrir/:idRapport/:idMedicament' , isloggedOn , asyncHandler(offrirControlleur.listOffreByID));
 
@@ -73,8 +73,8 @@ router.get('/offrir/:idRapport/:idMedicament' , isloggedOn , asyncHandler(offrir
  * @swagger
  * /api/offrir:
  *   post:
- *     summary: Créer une nouvelle offre
- *     description: Crée une nouvelle offre (médicament offert dans un rapport)
+ *     summary: Créer une offre pour un de vos rapports
+ *     description: Crée une nouvelle offre (médicament offert) seulement pour vos propres rapports
  *     security:
  *       - BearerAuth: []
  *     tags:
@@ -88,6 +88,7 @@ router.get('/offrir/:idRapport/:idMedicament' , isloggedOn , asyncHandler(offrir
  *             properties:
  *               idrapport:
  *                 type: integer
+ *                 description: ID de votre rapport
  *               idmedicament:
  *                 type: string
  *               quantite:
@@ -102,7 +103,7 @@ router.get('/offrir/:idRapport/:idMedicament' , isloggedOn , asyncHandler(offrir
  *       400:
  *         description: Données invalides
  *       401:
- *         description: Non authentifié
+ *         description: Non authentifié ou rapport n'appartient pas à l'utilisateur
  */
 router.post('/offrir' , isloggedOn , asyncHandler(offrirControlleur.createOffre));
 
@@ -110,8 +111,8 @@ router.post('/offrir' , isloggedOn , asyncHandler(offrirControlleur.createOffre)
  * @swagger
  * /api/offrir/{idRapport}/{idMedicament}:
  *   put:
- *     summary: Modifier une offre
- *     description: Met à jour les informations d'une offre existante
+ *     summary: Modifier une offre d'un de vos rapports
+ *     description: Met à jour une offre seulement si elle appartient à un de vos rapports
  *     security:
  *       - BearerAuth: []
  *     tags:
@@ -122,7 +123,7 @@ router.post('/offrir' , isloggedOn , asyncHandler(offrirControlleur.createOffre)
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID du rapport
+ *         description: ID de votre rapport
  *       - in: path
  *         name: idMedicament
  *         required: true
@@ -144,7 +145,7 @@ router.post('/offrir' , isloggedOn , asyncHandler(offrirControlleur.createOffre)
  *       404:
  *         description: Offre non trouvée
  *       401:
- *         description: Non authentifié
+ *         description: Non authentifié ou offre n'appartient pas à vos rapports
  */
 router.put('/offrir/:idRapport/:idMedicament' , isloggedOn , asyncHandler(offrirControlleur.updateOffreByID));
 
@@ -152,8 +153,8 @@ router.put('/offrir/:idRapport/:idMedicament' , isloggedOn , asyncHandler(offrir
  * @swagger
  * /api/offrir/{idRapport}/{idMedicament}:
  *   delete:
- *     summary: Supprimer une offre
- *     description: Supprime une offre de la base de données
+ *     summary: Supprimer une offre d'un de vos rapports
+ *     description: Supprime une offre seulement si elle appartient à un de vos rapports
  *     security:
  *       - BearerAuth: []
  *     tags:
@@ -164,7 +165,7 @@ router.put('/offrir/:idRapport/:idMedicament' , isloggedOn , asyncHandler(offrir
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID du rapport
+ *         description: ID de votre rapport
  *       - in: path
  *         name: idMedicament
  *         required: true
@@ -177,7 +178,7 @@ router.put('/offrir/:idRapport/:idMedicament' , isloggedOn , asyncHandler(offrir
  *       404:
  *         description: Offre non trouvée
  *       401:
- *         description: Non authentifié
+ *         description: Non authentifié ou offre n'appartient pas à vos rapports
  */
 router.delete('/offrir/:idRapport/:idMedicament' , isloggedOn , asyncHandler(offrirControlleur.deleteOffreByID));
  

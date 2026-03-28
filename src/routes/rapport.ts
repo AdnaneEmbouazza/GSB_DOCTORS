@@ -9,8 +9,8 @@ const router = Router();
  * @swagger
  * /api/rapports:
  *   get:
- *     summary: Récupérer la liste de tous les rapports
- *     description: Retourne la liste complète de tous les rapports de visite
+ *     summary: Récupérer vos rapports
+ *     description: Retourne la liste de tous les rapports de visite de l'utilisateur connecté
  *     security:
  *       - BearerAuth: []
  *     tags:
@@ -47,8 +47,8 @@ router.get('/rapports' , isloggedOn , asyncHandler(rapportControleur.listAllRapp
  * @swagger
  * /api/rapport/{id}:
  *   get:
- *     summary: Récupérer un rapport par ID
- *     description: Retourne les détails d'un rapport spécifique
+ *     summary: Récupérer un de vos rapports
+ *     description: Retourne les détails d'un rapport si celui-ci appartient à l'utilisateur connecté
  *     security:
  *       - BearerAuth: []
  *     tags:
@@ -59,14 +59,14 @@ router.get('/rapports' , isloggedOn , asyncHandler(rapportControleur.listAllRapp
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID du rapport
+ *         description: ID de votre rapport
  *     responses:
  *       200:
  *         description: Rapport récupéré avec succès
  *       404:
  *         description: Rapport non trouvé
  *       401:
- *         description: Non authentifié
+ *         description: Non authentifié ou rapport n'appartient pas à l'utilisateur
  */
 router.get('/rapport/:id' , isloggedOn , asyncHandler(rapportControleur.listRapportByID));
 
@@ -75,7 +75,7 @@ router.get('/rapport/:id' , isloggedOn , asyncHandler(rapportControleur.listRapp
  * /api/rapport:
  *   post:
  *     summary: Créer un nouveau rapport
- *     description: Crée un nouveau rapport de visite
+ *     description: Crée un nouveau rapport de visite associé à l'utilisateur connecté
  *     security:
  *       - BearerAuth: []
  *     tags:
@@ -94,13 +94,14 @@ router.get('/rapport/:id' , isloggedOn , asyncHandler(rapportControleur.listRapp
  *                 type: string
  *               bilan:
  *                 type: string
- *               idvisiteur:
- *                 type: integer
  *               idmedecin:
  *                 type: integer
  *             required:
- *               - idvisiteur
+ *               - date
+ *               - motif
+ *               - bilan
  *               - idmedecin
+ *             description: Note - idvisiteur est déterminé automatiquement depuis le token
  *     responses:
  *       201:
  *         description: Rapport créé avec succès
@@ -115,8 +116,8 @@ router.post('/rapport' , isloggedOn , asyncHandler(rapportControleur.createRappo
  * @swagger
  * /api/rapport/{id}:
  *   put:
- *     summary: Modifier un rapport
- *     description: Met à jour les informations d'un rapport existant
+ *     summary: Modifier un de vos rapports
+ *     description: Met à jour les informations d'un rapport si celui-ci appartient à l'utilisateur connecté
  *     security:
  *       - BearerAuth: []
  *     tags:
@@ -127,7 +128,7 @@ router.post('/rapport' , isloggedOn , asyncHandler(rapportControleur.createRappo
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID du rapport
+ *         description: ID de votre rapport
  *     requestBody:
  *       required: true
  *       content:
@@ -148,7 +149,7 @@ router.post('/rapport' , isloggedOn , asyncHandler(rapportControleur.createRappo
  *       404:
  *         description: Rapport non trouvé
  *       401:
- *         description: Non authentifié
+ *         description: Non authentifié ou rapport n'appartient pas à l'utilisateur
  */
 router.put('/rapport/:id' , isloggedOn , asyncHandler(rapportControleur.updateRapportByID));
 
@@ -156,8 +157,8 @@ router.put('/rapport/:id' , isloggedOn , asyncHandler(rapportControleur.updateRa
  * @swagger
  * /api/rapport/{id}:
  *   delete:
- *     summary: Supprimer un rapport
- *     description: Supprime un rapport de la base de données
+ *     summary: Supprimer un de vos rapports
+ *     description: Supprime un rapport si celui-ci appartient à l'utilisateur connecté
  *     security:
  *       - BearerAuth: []
  *     tags:
@@ -168,14 +169,14 @@ router.put('/rapport/:id' , isloggedOn , asyncHandler(rapportControleur.updateRa
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID du rapport
+ *         description: ID de votre rapport
  *     responses:
  *       200:
  *         description: Rapport supprimé avec succès
  *       404:
  *         description: Rapport non trouvé
  *       401:
- *         description: Non authentifié
+ *         description: Non authentifié ou rapport n'appartient pas à l'utilisateur
  */
 router.delete('/rapport/:id' , isloggedOn , asyncHandler(rapportControleur.deleteRapportByID));
 

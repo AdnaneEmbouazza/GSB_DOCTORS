@@ -1,32 +1,50 @@
 import { Request, Response } from "express";
 import * as rapportService from "../services/rapport";
-import { NotFoundError, BadRequestError } from "../error";
+import { NotFoundError, BadRequestError, UnauthorizedError } from "../error";
+import { TokenPayload } from "../utils/token";
 import logger from "../utils/logger";
 import { CreateRapportDTO, UpdateRapportDTO } from "../models/rapport";
 
 export async function listAllRapport(req: Request, res: Response): Promise<void> {
-    const rapport = await rapportService.getAllRapports();
-    logger.info(`${rapport.length} rapports récupérés`);
+    const payload: TokenPayload | undefined = req.visiteur;
+    
+    if (!payload) {
+        throw new UnauthorizedError('Token invalide');
+    }
+    
+    const rapport = await rapportService.getAllRapportsByVisiteur(payload.id);
+    logger.info(`${rapport.length} rapports récupérés pour le visiteur ${payload.id}`);
     res.status(200).json(rapport);
 };
 
 export async function listRapportByID(req: Request, res: Response): Promise<void> {
+    const payload: TokenPayload | undefined = req.visiteur;
     const id = Number(req.params.id);
-    const rapport = await rapportService.getRapportByID(id);
+    
+    if (!payload) {
+        throw new UnauthorizedError('Token invalide');
+    }
+    
+    const rapport = await rapportService.getRapportByIDAndVisiteur(id, payload.id);
     
     if (!rapport) {
         logger.warn(`Tentative d'accès à un rapport inexistant : ${id}`);
         throw new NotFoundError('Rapport non trouvé');
     }
     
-    logger.info(`Rapport ${id} récupéré`);
+    logger.info(`Rapport ${id} récupéré pour le visiteur ${payload.id}`);
     res.status(200).json(rapport);
 };
 
 export async function createRapport(req: Request, res: Response): Promise<void> {
+    const payload: TokenPayload | undefined = req.visiteur;
     const data : CreateRapportDTO = req.body;
+    
+    if (!payload) {
+        throw new UnauthorizedError('Token invalide');
+    }
 
-    if (!data.date || !data.bilan || !data.motif || data.idmedecin === undefined || !data.idvisiteur) {
+    if (!data.date || !data.bilan || !data.motif || data.idmedecin === undefined) {
         throw new BadRequestError('Tous les champs sont requis');
     }
 
@@ -34,37 +52,48 @@ export async function createRapport(req: Request, res: Response): Promise<void> 
         throw new BadRequestError('Les données du rapport sont requises');
     }
     
-    const rapport = await rapportService.createRapport(data);
-    logger.info(`Nouveau rapport créé`);
+    const rapport = await rapportService.createRapportByVisiteur(data, payload.id);
+    logger.info(`Nouveau rapport créé pour le visiteur ${payload.id}`);
     res.status(201).json(rapport);
 };
 
 export async function updateRapportByID(req: Request, res: Response): Promise<void> {
-    const  id  = Number(req.params.id); 
+    const payload: TokenPayload | undefined = req.visiteur;
+    const id = Number(req.params.id); 
     const data : UpdateRapportDTO = req.body;
+    
+    if (!payload) {
+        throw new UnauthorizedError('Token invalide');
+    }
     
     if (!data || Object.keys(data).length === 0) {
         throw new BadRequestError('Les données de mise à jour sont requises');
     }
     
-    const rapport = await rapportService.updateRapportByID(id, data);
+    const rapport = await rapportService.updateRapportByIDAndVisiteur(id, data, payload.id);
     
     if (!rapport) {
         throw new NotFoundError('Rapport non trouvé');
     }
     
-    logger.info(`Rapport ${id} mis à jour`);
+    logger.info(`Rapport ${id} mis à jour pour le visiteur ${payload.id}`);
     res.status(200).json(rapport);
 };
 
 export async function deleteRapportByID(req: Request, res: Response): Promise<void> {
+    const payload: TokenPayload | undefined = req.visiteur;
     const id = Number(req.params.id);
-    const rapport = await rapportService.deleteRapportByID(id);
+    
+    if (!payload) {
+        throw new UnauthorizedError('Token invalide');
+    }
+    
+    const rapport = await rapportService.deleteRapportByIDAndVisiteur(id, payload.id);
     
     if (!rapport) {
         throw new NotFoundError('Rapport non trouvé');
     }
     
-    logger.info(`Rapport ${id} supprimé`);
+    logger.info(`Rapport ${id} supprimé pour le visiteur ${payload.id}`);
     res.status(200).json(rapport);
 };
