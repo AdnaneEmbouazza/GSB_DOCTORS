@@ -91,10 +91,16 @@ export async function createVisiteur (data: CreateVisiteurDTO) {
 
 // updateCurrentVisiteurByID : met à jour un visiteur existant en fonction de son ID et des données fournies
 // L'utilisateur ne peut modifier que son propre compte
-export function updateCurrentVisiteurByID (id: number, data: UpdateVisiteurDTO, payload: TokenPayload) {
+export async function updateCurrentVisiteurByID (id: number, data: UpdateVisiteurDTO, payload: TokenPayload) {
     // Vérifier que l'utilisateur ne modifie que son propre compte
     if (payload.id !== id) {
         throw new UnauthorizedError('Vous ne pouvez modifier que votre propre compte');
+    }
+
+    // Si un nouveau mot de passe est fourni, le hasher
+    let mdpToUpdate = data.mdp;
+    if (data.mdp) {
+        mdpToUpdate = await hashPassword(data.mdp);
     }
 
     return prisma.visiteur.update({
@@ -103,7 +109,7 @@ export function updateCurrentVisiteurByID (id: number, data: UpdateVisiteurDTO, 
             nom: data.nom,
             prenom: data.prenom,
             login: data.login,
-            mdp: data.mdp,
+            mdp: mdpToUpdate,
             adresse: data.adresse,
             cp: data.cp,
             ville: data.ville,
@@ -167,14 +173,20 @@ export async function deleteCurrentVisiteurByID (id: number, payload: TokenPaylo
 };
 
 // updateVisiteurByID : met à jour un visiteur existant en fonction de son ID et des données fournies
-export function updateVisiteurByID (id: number, data: UpdateVisiteurDTO) {
+export async function updateVisiteurByID (id: number, data: UpdateVisiteurDTO) {
+    // Si un nouveau mot de passe est fourni, le hasher
+    let mdpToUpdate = data.mdp;
+    if (data.mdp) {
+        mdpToUpdate = await hashPassword(data.mdp);
+    }
+
     return prisma.visiteur.update({
         where: { id },
         data: {
             nom: data.nom,
             prenom: data.prenom,
             login: data.login,
-            mdp: data.mdp,
+            mdp: mdpToUpdate,
             adresse: data.adresse,
             cp: data.cp,
             ville: data.ville,

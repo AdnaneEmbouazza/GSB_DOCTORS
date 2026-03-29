@@ -200,7 +200,7 @@ router.get ('/visiteurs/:id' , isloggedOn , asyncHandler(visiteurControleur.getV
  *                 type: string
  *               login:
  *                 type: string
- *               motdepasse:
+ *               mdp:
  *                 type: string
  *     responses:
  *       200:

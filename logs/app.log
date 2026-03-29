@@ -258,3 +258,39 @@
 {"level":"info","message":"Visiteur 3 mis à jour (compte personnel)","timestamp":"2026-03-29 04:27:10"}
 {"level":"error","message":"Erreur Serveur : [DELETE /api/visiteurs/account] 500 - \nInvalid `prisma.visiteur.delete()` invocation:\n\n\nForeign key constraint violated on the fields: (`idVisiteur`)","timestamp":"2026-03-29 04:27:45"}
 {"level":"info","message":"Visiteur 12 récupéré","timestamp":"2026-03-29 04:27:55"}
+{"level":"error","message":"[POST /api/visiteurs/login] UnauthorizedError: 401 - Mot de passe incorrect","timestamp":"2026-03-29 04:37:16"}
+{"level":"info","message":"Visiteur string connecté","timestamp":"2026-03-29 04:38:16"}
+{"level":"info","message":"28 visiteurs récupérés","timestamp":"2026-03-29 04:38:40"}
+{"level":"info","message":"Visiteur 3 récupéré (depuis le token)","timestamp":"2026-03-29 04:38:51"}
+{"level":"info","message":"Visiteur 15 récupéré","timestamp":"2026-03-29 04:39:07"}
+{"level":"info","message":"Visiteur 3 mis à jour (compte personnel)","timestamp":"2026-03-29 04:39:23"}
+{"level":"info","message":"Visiteur 3 supprimé (compte personnel)","timestamp":"2026-03-29 04:39:46"}
+{"level":"info","message":"Visiteur ltusseau connecté","timestamp":"2026-03-29 13:18:34"}
+{"level":"info","message":"Visiteur 4 mis à jour (compte personnel)","timestamp":"2026-03-29 13:19:24"}
+{"level":"info","message":"Utilisateur déconnecté","timestamp":"2026-03-29 13:19:42"}
+{"level":"error","message":"[POST /api/visiteurs/login] UnauthorizedError: 401 - Mot de passe incorrect","timestamp":"2026-03-29 13:19:55"}
+{"level":"info","message":"Visiteur pbentot connecté","timestamp":"2026-03-29 13:20:28"}
+{"level":"error","message":"Erreur Serveur : [PUT /api/visiteurs/account] 500 - \nInvalid `prisma.visiteur.update()` invocation in\n/app/src/services/visiteur.ts:106:28\n\n  103     mdpToUpdate = await hashPassword(data.mdp);\n  104 }\n  105 \n→ 106 return prisma.visiteur.update(\nThe provided value for the column is too long for the column's type. Column: cp","timestamp":"2026-03-29 13:21:06"}
+{"level":"info","message":"Visiteur 5 mis à jour (compte personnel)","timestamp":"2026-03-29 13:21:25"}
+{"level":"info","message":"Utilisateur déconnecté","timestamp":"2026-03-29 13:21:47"}
+{"level":"error","message":"[POST /api/visiteurs/login] UnauthorizedError: 401 - Mot de passe incorrect","timestamp":"2026-03-29 13:22:17"}
+{"level":"info","message":"Visiteur lbioret connecté","timestamp":"2026-03-29 13:33:05"}
+{"level":"info","message":"Visiteur 6 mis à jour (compte personnel)","timestamp":"2026-03-29 13:34:35"}
+{"level":"info","message":"Utilisateur déconnecté","timestamp":"2026-03-29 13:34:46"}
+{"level":"error","message":"[POST /api/visiteurs/login] UnauthorizedError: 401 - Mot de passe incorrect","timestamp":"2026-03-29 13:35:14"}
+{"level":"error","message":"[POST /api/visiteurs/login] UnauthorizedError: 401 - Mot de passe incorrect","timestamp":"2026-03-29 13:36:10"}
+{"level":"error","message":"[POST /api/visiteurs/login] UnauthorizedError: 401 - Mot de passe incorrect","timestamp":"2026-03-29 13:36:22"}
+{"level":"info","message":"Visiteur adnaneembouazza connecté","timestamp":"2026-03-29 13:42:41"}
+{"level":"error","message":"[POST /api/visiteurs/login] UnauthorizedError: 401 - Mot de passe incorrect","timestamp":"2026-03-29 13:43:42"}
+{"level":"info","message":"Visiteur aribiA connecté","timestamp":"2026-03-29 13:55:41"}
+{"level":"info","message":"Visiteur 1 mis à jour (compte personnel)","timestamp":"2026-03-29 13:56:34"}
+{"level":"info","message":"Utilisateur déconnecté","timestamp":"2026-03-29 13:56:42"}
+{"level":"error","message":"[POST /api/visiteurs/login] UnauthorizedError: 401 - Mot de passe incorrect","timestamp":"2026-03-29 13:57:02"}
+{"level":"info","message":"Visiteur adnane connecté","timestamp":"2026-03-29 13:57:17"}
+{"level":"info","message":"Visiteur dandre connecté","timestamp":"2026-03-29 14:05:31"}
+{"level":"info","message":"Visiteur 2 mis à jour (compte personnel)","timestamp":"2026-03-29 14:06:32"}
+{"level":"info","message":"Visiteur aribiA connecté","timestamp":"2026-03-29 14:20:14"}
+{"level":"info","message":"Visiteur 1 mis à jour (compte personnel)","timestamp":"2026-03-29 14:21:16"}
+{"level":"info","message":"Utilisateur déconnecté","timestamp":"2026-03-29 14:21:29"}
+{"level":"info","message":"Visiteur adnane connecté","timestamp":"2026-03-29 14:21:57"}
+{"level":"info","message":"20 familles récupérées","timestamp":"2026-03-29 14:22:13"}
