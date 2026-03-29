@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du Médecin - GSB Doctors</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-logo"><img src="img/gsb-logo.webp" alt="GSB Doctors Logo" class="navbar-logo-img" height="40" /></div>
+            <div class="navbar-buttons" id="navbar-buttons">
+                <a href="login.html" class="btn-nav btn-nav-primary" id="login-link">Connexion</a>
+                <a href="signup.html" class="btn-nav btn-nav-primary" id="signup-link">Inscription</a>
+                <button class="btn-nav btn-nav-primary" id="account-btn" style="display: none;">Mon Compte</button>
+                <button class="btn-nav btn-nav-primary" id="logout-btn" style="display: none;">Déconnexion</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <div class="header-flex">
+                <img src="img/gsb-logo.webp" alt="GSB Doctors Logo" class="header-logo" height="64" />
+                <h1>Détails du Médecin</h1>
+            </div>
+        </header>
+
+        <main>
+            <div id="loading" class="loading" style="display: none;">
+                Chargement des informations...
+            </div>
+
+            <div id="error" class="alert alert-error" style="display: none;"></div>
+
+            <div id="content" style="display: none;">
+                <div class="medecin-detail-card">
+                    <div class="medecin-detail-header">
+                        <h2 id="field-nom">-</h2>
+                        <p id="field-specialite" class="medecin-specialite">-</p>
+                    </div>
+
+                    <div class="medecin-detail-body">
+                        <div class="detail-section">
+                            <h3>Informations</h3>
+                            
+                            <div class="detail-field">
+                                <label>Prénom</label>
+                                <p id="field-prenom">-</p>
+                            </div>
+                            
+                            <div class="detail-field">
+                                <label>Adresse</label>
+                                <p id="field-adresse">-</p>
+                            </div>
+                            
+                            <div class="detail-field">
+                                <label>Téléphone</label>
+                                <p id="field-tel">-</p>
+                            </div>
+                            
+                            <div class="detail-field">
+                                <label>Département</label>
+                                <p id="field-departement">-</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="medecin-actions">
+                    <button id="show-rapports-btn" class="btn-primary">Voir les rapports</button>
+                    <a href="index.html" class="btn-primary">Retour à l'accueil</a>
+                </div>
+
+                <div id="rapports-section" style="display: none;">
+                    <div class="reports-card">
+                        <h2>Rapports des visites</h2>
+                        <div id="rapports-list" class="reports-list">
+                            <!-- Les rapports seront affichés ici -->
+                        </div>
+                    </div>
+                    <div class="medecin-actions">
+                        <button id="hide-rapports-btn" class="btn-primary">Masquer les rapports</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 GSB Doctors. Tous droits réservés.</p>
+        </footer>
+    </div>
+
+    <script src="js/auth_check.js"></script>
+    <script src="js/medecin-detail.js"></script>
+</body>
+</html>

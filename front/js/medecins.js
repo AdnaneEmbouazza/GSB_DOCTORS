@@ -144,6 +144,7 @@ function createMedecinCard(medecin) {
                     <span>${medecin.specialitecomplementaire}</span>
                 </div>
             ` : ''}
+            <a href="medecin-detail.html?id=${medecin.id}" class="btn-detail">Voir détails</a>
         </div>
     `;
     
