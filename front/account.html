@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Compte - GSB Doctors</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-logo">
+                <a href="index.html">
+                    <img src="img/gsb-logo.webp" alt="GSB Doctors Logo" class="navbar-logo-img" height="40" />
+                </a>
+            </div>
+            <div class="navbar-buttons" id="navbar-buttons">
+                <a href="login.html" class="btn-nav btn-nav-primary" id="login-link">Connexion</a>
+                <a href="signup.html" class="btn-nav btn-nav-primary" id="signup-link">Inscription</a>
+                <button class="btn-nav btn-nav-primary" id="account-btn" style="display: none;">Mon Compte</button>
+                <button class="btn-nav btn-nav-primary" id="logout-btn" style="display: none;">Déconnexion</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <div class="header-flex">
+                <img src="img/gsb-logo.webp" alt="GSB Doctors Logo" class="header-logo" height="64" />
+                <h1>Mon Compte</h1>
+            </div>
+        </header>
+
+        <main>
+            <div id="loading" class="loading" style="display: none;">
+                Chargement des informations...
+            </div>
+
+            <div id="error" class="alert alert-error" style="display: none;"></div>
+
+            <div id="content" style="display: none;">
+                <div class="account-card">
+                    <div class="account-section">
+                        <div class="account-field">
+                            <div class="account-label">Identifiant</div>
+                            <div class="account-value" id="field-login">-</div>
+                        </div>
+                        
+                        <div class="account-field">
+                            <div class="account-label">Nom</div>
+                            <div class="account-value" id="field-nom">-</div>
+                        </div>
+                        
+                        <div class="account-field">
+                            <div class="account-label">Prénom</div>
+                            <div class="account-value" id="field-prenom">-</div>
+                        </div>
+                        
+                        <div class="account-field">
+                            <div class="account-label">Adresse</div>
+                            <div class="account-value" id="field-adresse">-</div>
+                        </div>
+                        
+                        <div class="account-field">
+                            <div class="account-label">Date d'embauche</div>
+                            <div class="account-value" id="field-dateEmbauche">-</div>
+                        </div>
+                        
+                        <div class="account-field">
+                            <div class="account-label">Code postal</div>
+                            <div class="account-value" id="field-cp">-</div>
+                        </div>
+                        
+                        <div class="account-field">
+                            <div class="account-label">Ville</div>
+                            <div class="account-value" id="field-ville">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="account-actions">
+                    <button id="show-reports-btn" class="btn-primary">Mes rapports</button>
+                    <a href="index.html" class="btn-primary">Retour à l'accueil</a>
+                </div>
+
+                <div id="reports-section" style="display: none;">
+                    <div class="reports-card">
+                        <h2>Mes Rapports</h2>
+                        <div id="reports-list" class="reports-list">
+                            <!-- Les rapports seront affichés ici -->
+                        </div>
+                    </div>
+                    <div class="account-actions">
+                        <button id="hide-reports-btn" class="btn-primary">Masquer les rapports</button>
+                    </div>
+                </div>
+
+                <!-- Modale pour modifier un rapport -->
+                <div id="edit-rapport-modal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Modifier le rapport</h2>
+                            <button class="modal-close" id="modal-close-edit">&times;</button>
+                        </div>
+                        <form id="edit-rapport-form" class="modal-form">
+                            <div class="form-group">
+                                <label for="edit-rapport-date">Date</label>
+                                <input type="date" id="edit-rapport-date" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="edit-rapport-motif">Motif</label>
+                                <input type="text" id="edit-rapport-motif" required placeholder="Motif de la visite">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="edit-rapport-bilan">Bilan</label>
+                                <textarea id="edit-rapport-bilan" required placeholder="Bilan de la visite" rows="4"></textarea>
+                            </div>
+                            
+                            <div id="edit-rapport-error" class="form-message error" style="display: none;"></div>
+                            
+                            <div class="modal-actions">
+                                <button type="submit" class="btn-primary">Enregistrer</button>
+                                <button type="button" class="btn-secondary" id="modal-cancel-edit">Annuler</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 GSB Doctors. Tous droits réservés.</p>
+        </footer>
+    </div>
+
+    <script src="js/auth_check.js"></script>
+    <script src="js/account.js"></script>
+</body>
+</html>

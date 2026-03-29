@@ -20,6 +20,11 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use(express.json());
 app.use(cookieParser()); // Middleware pour parser les cookies
+app.use(express.static('front')); // Servir les fichiers statiques du frontend
+app.use('/api', (req, res, next) => {
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    next();
+});
 app.use('/api', familleRouter);
 app.use('/api', medicamentRouter);
 app.use('/api', medecinRouter);

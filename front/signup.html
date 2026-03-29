@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - GSB Doctors</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-logo">
+                <a href="index.html">
+                    <img src="img/gsb-logo.webp" alt="GSB Doctors Logo" class="navbar-logo-img" height="40" />
+                </a>
+            </div>
+            <div class="navbar-buttons" id="navbar-buttons">
+                <a href="login.html" class="btn-nav btn-nav-primary" id="login-link">Connexion</a>
+                <a href="signup.html" class="btn-nav btn-nav-primary" id="signup-link">Inscription</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>Inscription</h1>
+                <p>Créez votre compte GSB Doctors</p>
+            </div>
+
+            <form id="signup-form" class="auth-form">
+                <div id="signup-error" class="form-message error" style="display: none;"></div>
+                
+                <div class="form-group">
+                    <label for="signup-login">Identifiant <span class="required">*</span></label>
+                    <input type="text" id="signup-login" name="login" required placeholder="Choisir un identifiant">
+                </div>
+                
+                <div class="form-group">
+                    <label for="signup-password">Mot de passe <span class="required">*</span></label>
+                    <input type="password" id="signup-password" name="mdp" required placeholder="Choisir un mot de passe">
+                </div>
+                
+                <div class="form-group">
+                    <label for="signup-password-confirm">Confirmer le mot de passe <span class="required">*</span></label>
+                    <input type="password" id="signup-password-confirm" name="mdp-confirm" required placeholder="Confirmer le mot de passe">
+                </div>
+
+                <hr class="form-divider">
+                
+                <div class="form-group">
+                    <label for="signup-nom">Nom</label>
+                    <input type="text" id="signup-nom" name="nom" placeholder="Votre nom">
+                </div>
+                
+                <div class="form-group">
+                    <label for="signup-prenom">Prénom</label>
+                    <input type="text" id="signup-prenom" name="prenom" placeholder="Votre prénom">
+                </div>
+                
+                <div class="form-group">
+                    <label for="signup-adresse">Adresse</label>
+                    <input type="text" id="signup-adresse" name="adresse" placeholder="Votre adresse">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="signup-cp">Code postal</label>
+                        <input type="text" id="signup-cp" name="cp" placeholder="Code postal">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-ville">Ville</label>
+                        <input type="text" id="signup-ville" name="ville" placeholder="Ville">
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-primary btn-large">S'inscrire</button>
+            </form>
+            
+            <div class="auth-footer">
+                <p>Déjà inscrit? <a href="login.html" class="auth-link">Se connecter ici</a></p>
+                <p><a href="index.html" class="auth-link">Retour à l'accueil</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth_check.js"></script>
+    <script type="module" src="js/auth.js"></script>
+</body>
+</html>

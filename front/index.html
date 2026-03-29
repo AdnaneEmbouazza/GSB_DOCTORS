@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Médecins - GSB Doctors</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-logo"><img src="img/gsb-logo.webp" alt="GSB Doctors Logo" class="navbar-logo-img" height="40" /></div>
+            <div class="navbar-buttons" id="navbar-buttons">
+                <a href="login.html" class="btn-nav btn-nav-primary" id="login-link">Connexion</a>
+                <a href="signup.html" class="btn-nav btn-nav-primary" id="signup-link">Inscription</a>
+                <button class="btn-nav btn-nav-primary" id="account-btn" style="display: none;">Compte</button>
+                <button class="btn-nav btn-nav-primary" id="logout-btn" style="display: none;">Déconnexion</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <div class="header-flex">
+                <img src="img/gsb-logo.webp" alt="GSB Doctors Logo" class="header-logo" height="64" />
+                <h1>Annuaire des Médecins</h1>
+            </div>
+        </header>
+
+        <main>
+            <div id="loading" class="loading" style="display: none;">
+                Chargement des médecins...
+            </div>
+
+            <div id="error" class="alert alert-error" style="display: none;"></div>
+
+            <div id="content">
+                <div id="medecins-list" class="medecins-grid">
+                    <!-- Les médecins seront affichés ici -->
+                </div>
+
+                <div class="pagination">
+                    <button id="first-btn" class="pagination-btn pagination-btn-icon">⏮ Première</button>
+                    <button id="prev-btn" class="pagination-btn pagination-btn-icon">← Précédent</button>
+                    <span id="page-info" class="page-info">Page 1</span>
+                    <button id="next-btn" class="pagination-btn pagination-btn-icon">Suivant →</button>
+                    <button id="last-btn" class="pagination-btn pagination-btn-icon">Dernière ⏭</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 GSB Doctors. Tous droits réservés.</p>
+        </footer>
+    </div>
+
+    <script src="js/auth_check.js"></script>
+    <script type="module" src="js/medecins.js"></script>
+</body>
+</html>

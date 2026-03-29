@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - GSB Doctors</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-logo">
+                <a href="index.html">
+                    <img src="img/gsb-logo.webp" alt="GSB Doctors Logo" class="navbar-logo-img" height="40" />
+                </a>
+            </div>
+            <div class="navbar-buttons" id="navbar-buttons">
+                <a href="login.html" class="btn-nav btn-nav-primary" id="login-link">Connexion</a>
+                <a href="signup.html" class="btn-nav btn-nav-primary" id="signup-link">Inscription</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>Connexion</h1>
+                <p>Accédez à votre compte GSB Doctors</p>
+            </div>
+
+            <form id="login-form" class="auth-form">
+                <div id="login-error" class="form-message error" style="display: none;"></div>
+                
+                <div class="form-group">
+                    <label for="login-username">Identifiant</label>
+                    <input type="text" id="login-username" name="login" required placeholder="Votre identifiant">
+                </div>
+                
+                <div class="form-group">
+                    <label for="login-password">Mot de passe</label>
+                    <input type="password" id="login-password" name="mdp" required placeholder="Votre mot de passe">
+                </div>
+                
+                <button type="submit" class="btn-primary btn-large">Se connecter</button>
+            </form>
+            
+            <div class="auth-footer">
+                <p>Pas encore inscrit? <a href="signup.html" class="auth-link">S'inscrire ici</a></p>
+                <p><a href="index.html" class="auth-link">Retour à l'accueil</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth_check.js"></script>
+    <script type="module" src="js/auth.js"></script>
+</body>
+</html>

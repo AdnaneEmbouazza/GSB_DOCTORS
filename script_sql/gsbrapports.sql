@@ -27,9 +27,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `famille` (
-  `id` varchar(10) NOT NULL,
+  `id` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `libelle` varchar(80) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Contenu de la table `famille`
@@ -71,7 +71,7 @@ CREATE TABLE `medecin` (
   `tel` varchar(15) DEFAULT NULL,
   `specialitecomplementaire` varchar(50) DEFAULT NULL,
   `departement` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Contenu de la table `medecin`
@@ -1089,11 +1089,11 @@ INSERT INTO `medecin` (`nom`, `prenom`, `adresse`, `tel`, `specialitecomplementa
 CREATE TABLE `medicament` (
   `id` varchar(30) NOT NULL,
   `nomCommercial` varchar(80) NOT NULL,
-  `idFamille` varchar(10) NOT NULL,
+  `idFamille` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `composition` varchar(100) NOT NULL,
   `effets` varchar(100) NOT NULL,
   `contreIndications` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Contenu de la table `medicament`
@@ -1139,7 +1139,7 @@ CREATE TABLE `offrir` (
   `idRapport` int(11) NOT NULL,
   `idMedicament` varchar(30) NOT NULL,
   `quantite` int(2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Contenu de la table `offrir`
@@ -2023,7 +2023,7 @@ CREATE TABLE `rapport` (
   `bilan` varchar(100) DEFAULT NULL,
   `idVisiteur` int(11) NOT NULL,
   `idMedecin` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Contenu de la table `rapport`
