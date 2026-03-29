@@ -17,7 +17,6 @@ export function getAllVisiteurs() {
             cp: true,
             ville: true,
             dateembauche: true,
-            acesstoken: true,
             rapport: true
         }
     });
@@ -36,7 +35,6 @@ export async function getCurrentVisiteur(payload: TokenPayload) {
             cp: true,
             ville: true,
             dateembauche: true,
-            acesstoken: true,
             rapport: true
         }
     });
@@ -55,7 +53,6 @@ export function getVisiteurByID (id: number) {
             cp: true,
             ville: true,
             dateembauche: true,
-            acesstoken: true,
             rapport: true
         }
     });
@@ -129,11 +126,28 @@ export function updateCurrentVisiteurByID (id: number, data: UpdateVisiteurDTO, 
 
 // deleteCurrentVisiteurByID : supprime un visiteur en fonction de son ID
 // L'utilisateur ne peut supprimer que son propre compte
-export function deleteCurrentVisiteurByID (id: number, payload: TokenPayload) {
+export async function deleteCurrentVisiteurByID (id: number, payload: TokenPayload) {
     // Vérifier que l'utilisateur ne supprime que son propre compte
     if (payload.id !== id) {
         throw new UnauthorizedError('Vous ne pouvez supprimer que votre propre compte');
     }
+
+    // Récupérer tous les rapports du visiteur
+    const rapports = await prisma.rapport.findMany({
+        where: { idvisiteur: id }
+    });
+
+    // Supprimer toutes les offres de chaque rapport
+    for (const rapport of rapports) {
+        await prisma.offrir.deleteMany({
+            where: { idrapport: rapport.id }
+        });
+    }
+
+    // Supprimer tous les rapports du visiteur
+    await prisma.rapport.deleteMany({
+        where: { idvisiteur: id }
+    });
 
     return prisma.visiteur.delete({
         where: { id },
@@ -182,7 +196,24 @@ export function updateVisiteurByID (id: number, data: UpdateVisiteurDTO) {
 };
 
 // deleteVisiteurByID : supprime un visiteur en fonction de son ID
-export function deleteVisiteurByID (id: number) {
+export async function deleteVisiteurByID (id: number) {
+    // Récupérer tous les rapports du visiteur
+    const rapports = await prisma.rapport.findMany({
+        where: { idvisiteur: id }
+    });
+
+    // Supprimer toutes les offres de chaque rapport
+    for (const rapport of rapports) {
+        await prisma.offrir.deleteMany({
+            where: { idrapport: rapport.id }
+        });
+    }
+
+    // Supprimer tous les rapports du visiteur
+    await prisma.rapport.deleteMany({
+        where: { idvisiteur: id }
+    });
+
     return prisma.visiteur.delete({
         where: { id },
         select: {

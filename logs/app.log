@@ -201,3 +201,60 @@
 {"level":"info","message":"1 rapports récupérés pour le visiteur 9 à la date 2016-07-02","timestamp":"2026-03-29 01:00:53"}
 {"level":"info","message":"1 rapports récupérés pour le visiteur 1 à la date 2016-07-02","timestamp":"2026-03-29 01:01:00"}
 {"level":"info","message":"0 rapports récupérés pour le visiteur 19 à la date 2016-07-02","timestamp":"2026-03-29 01:01:17"}
+{"level":"info","message":"0 rapports récupérés pour le visiteur 19 à la date 2016-07-02","timestamp":"2026-03-29 01:12:50"}
+{"level":"info","message":"Rapport 28 récupéré pour le visiteur 1","timestamp":"2026-03-29 01:13:54"}
+{"level":"error","message":"[GET /api/rapport/29] UnauthorizedError: 401 - Vous n'avez pas accès à ce rapport","timestamp":"2026-03-29 01:13:57"}
+{"level":"info","message":"Rapport 28 mis à jour pour le visiteur 1","timestamp":"2026-03-29 01:16:47"}
+{"level":"error","message":"Erreur Serveur : [DELETE /api/rapport/28] 500 - \nInvalid `prisma.rapport.delete()` invocation in\n/app/src/services/rapport.ts:98:27\n\n  95     throw new UnauthorizedError('Vous ne pouvez supprimer que vos propres rapports');\n  96 }\n  97 \n→ 98 return prisma.rapport.delete(\nForeign key constraint violated on the fields: (`idRapport`)","timestamp":"2026-03-29 01:18:07"}
+{"level":"info","message":"Visiteur aribiA connecté","timestamp":"2026-03-29 03:33:34"}
+{"level":"info","message":"20 familles récupérées","timestamp":"2026-03-29 03:33:58"}
+{"level":"info","message":"Famille AA récupérée","timestamp":"2026-03-29 03:34:05"}
+{"level":"info","message":"1000 médecins récupérés","timestamp":"2026-03-29 03:34:11"}
+{"level":"info","message":"Recherche effectuée pour: \"Dupont\" - 1 résultats trouvés","timestamp":"2026-03-29 03:34:23"}
+{"level":"info","message":"Recherche effectuée pour: \"Mar\" - 66 résultats trouvés","timestamp":"2026-03-29 03:34:32"}
+{"level":"info","message":"Médecin 621 récupéré","timestamp":"2026-03-29 03:34:46"}
+{"level":"info","message":"28 médicaments récupérés","timestamp":"2026-03-29 03:34:55"}
+{"level":"info","message":"Médicament AMOPIL7 récupéré","timestamp":"2026-03-29 03:35:35"}
+{"level":"info","message":"54 offres récupérées pour le visiteur 1","timestamp":"2026-03-29 03:35:49"}
+{"level":"info","message":"Nouvelle offre créée pour le visiteur 1","timestamp":"2026-03-29 03:36:37"}
+{"level":"info","message":"Offre 4-3MYC7 récupérée pour le visiteur 1","timestamp":"2026-03-29 03:37:22"}
+{"level":"warn","message":"Tentative d'accès à une offre inexistante : 4-DOLRIL7","timestamp":"2026-03-29 03:37:30"}
+{"level":"error","message":"[GET /api/offrir/4/DOLRIL7] NotFoundError: 404 - Offre non trouvée","timestamp":"2026-03-29 03:37:30"}
+{"level":"info","message":"Offre 4-CLAZER6 mise à jour pour le visiteur 1","timestamp":"2026-03-29 03:37:59"}
+{"level":"info","message":"Offre 4-CLAZER6 supprimée pour le visiteur 1","timestamp":"2026-03-29 03:38:30"}
+{"level":"info","message":"97 rapports récupérés pour le visiteur 1","timestamp":"2026-03-29 03:38:51"}
+{"level":"info","message":"Aucun rapport trouvé pour le visiteur 5 à la date 2024-01-15","timestamp":"2026-03-29 03:38:57"}
+{"level":"info","message":"Aucun rapport trouvé pour le visiteur 5 à la date 2017-01-02","timestamp":"2026-03-29 03:39:39"}
+{"level":"info","message":"Aucun rapport trouvé pour le visiteur 9 à la date 2017-01-02","timestamp":"2026-03-29 03:39:43"}
+{"level":"info","message":"Aucun rapport trouvé pour le visiteur 1 à la date 2017-01-02","timestamp":"2026-03-29 03:39:47"}
+{"level":"info","message":"1 rapports récupérés pour le visiteur 6 à la date 2017-01-02","timestamp":"2026-03-29 03:39:55"}
+{"level":"info","message":"Rapport 4 récupéré pour le visiteur 1","timestamp":"2026-03-29 03:40:28"}
+{"level":"error","message":"[GET /api/rapport/8] UnauthorizedError: 401 - Vous n'avez pas accès à ce rapport","timestamp":"2026-03-29 03:40:36"}
+{"level":"info","message":"Rapport 4 mis à jour pour le visiteur 1","timestamp":"2026-03-29 03:41:07"}
+{"level":"info","message":"Rapport 4 supprimé pour le visiteur 1","timestamp":"2026-03-29 03:41:29"}
+{"level":"error","message":"[DELETE /api/rapport/5] UnauthorizedError: 401 - Vous ne pouvez supprimer que vos propres rapports","timestamp":"2026-03-29 03:41:43"}
+{"level":"info","message":"Nouveau rapport créé pour le visiteur 1","timestamp":"2026-03-29 03:42:04"}
+{"level":"info","message":"Utilisateur déconnecté","timestamp":"2026-03-29 03:42:40"}
+{"level":"info","message":"Nouveau visiteur inscrit","timestamp":"2026-03-29 03:43:34"}
+{"level":"info","message":"Visiteur jdupont connecté","timestamp":"2026-03-29 03:45:04"}
+{"level":"info","message":"28 visiteurs récupérés","timestamp":"2026-03-29 03:45:30"}
+{"level":"info","message":"Visiteur 3 récupéré","timestamp":"2026-03-29 03:47:01"}
+{"level":"error","message":"Erreur Serveur : [GET /api/visiteurs/account] 500 - \nInvalid `prisma.visiteur.findUnique()` invocation in\n/app/src/services/visiteur.ts:47:28\n\n  44 \n  45 // getVisiteurByID : renvoie un visiteur en fonction de son ID\n  46 export function getVisiteurByID (id: number) {\n→ 47     return prisma.visiteur.findUnique({\n           where: {\n         +   id: Int\n           },\n           select: {\n             id: true,\n             nom: true,\n             prenom: true,\n             login: true,\n             adresse: true,\n             cp: true,\n             ville: true,\n             dateembauche: true,\n             acesstoken: true,\n             rapport: true\n           }\n         })\n\nArgument `id` is missing.","timestamp":"2026-03-29 03:47:15"}
+{"level":"info","message":"Visiteur aribiA connecté","timestamp":"2026-03-29 03:56:29"}
+{"level":"info","message":"28 visiteurs récupérés","timestamp":"2026-03-29 03:56:48"}
+{"level":"info","message":"Visiteur 5 récupéré","timestamp":"2026-03-29 03:56:58"}
+{"level":"error","message":"Erreur Serveur : [GET /api/visiteurs/account] 500 - \nInvalid `prisma.visiteur.findUnique()` invocation in\n/app/src/services/visiteur.ts:47:28\n\n  44 \n  45 // getVisiteurByID : renvoie un visiteur en fonction de son ID\n  46 export function getVisiteurByID (id: number) {\n→ 47     return prisma.visiteur.findUnique({\n           where: {\n         +   id: Int\n           },\n           select: {\n             id: true,\n             nom: true,\n             prenom: true,\n             login: true,\n             adresse: true,\n             cp: true,\n             ville: true,\n             dateembauche: true,\n             acesstoken: true,\n             rapport: true\n           }\n         })\n\nArgument `id` is missing.","timestamp":"2026-03-29 03:57:04"}
+{"level":"info","message":"Visiteur 5 récupéré","timestamp":"2026-03-29 04:05:30"}
+{"level":"error","message":"Erreur Serveur : [GET /api/visiteurs/account] 500 - \nInvalid `prisma.visiteur.findUnique()` invocation in\n/app/src/services/visiteur.ts:47:28\n\n  44 \n  45 // getVisiteurByID : renvoie un visiteur en fonction de son ID\n  46 export function getVisiteurByID (id: number) {\n→ 47     return prisma.visiteur.findUnique({\n           where: {\n         +   id: Int\n           },\n           select: {\n             id: true,\n             nom: true,\n             prenom: true,\n             login: true,\n             adresse: true,\n             cp: true,\n             ville: true,\n             dateembauche: true,\n             acesstoken: true,\n             rapport: true\n           }\n         })\n\nArgument `id` is missing.","timestamp":"2026-03-29 04:07:40"}
+{"level":"info","message":"Visiteur 1 mis à jour (compte personnel)","timestamp":"2026-03-29 04:09:20"}
+{"level":"error","message":"Erreur Serveur : [DELETE /api/visiteurs/account] 500 - \nInvalid `prisma.visiteur.delete()` invocation in\n/app/src/services/visiteur.ts:138:28\n\n  135     throw new UnauthorizedError('Vous ne pouvez supprimer que votre propre compte');\n  136 }\n  137 \n→ 138 return prisma.visiteur.delete(\nForeign key constraint violated on the fields: (`idVisiteur`)","timestamp":"2026-03-29 04:09:42"}
+{"level":"error","message":"[POST /api/visiteurs/login] UnauthorizedError: 401 - Mot de passe incorrect","timestamp":"2026-03-29 04:20:33"}
+{"level":"error","message":"[POST /api/visiteurs/login] UnauthorizedError: 401 - Mot de passe incorrect","timestamp":"2026-03-29 04:20:39"}
+{"level":"info","message":"Visiteur dandre connecté","timestamp":"2026-03-29 04:20:51"}
+{"level":"info","message":"Visiteur 2 récupéré (depuis le token)","timestamp":"2026-03-29 04:21:11"}
+{"level":"info","message":"Visiteur cbedos connecté","timestamp":"2026-03-29 04:24:23"}
+{"level":"info","message":"Visiteur 3 récupéré (depuis le token)","timestamp":"2026-03-29 04:24:44"}
+{"level":"error","message":"Erreur Serveur : [PUT /api/visiteurs/account] 500 - \nInvalid `prisma.visiteur.update()` invocation:\n\n\nThe provided value for the column is too long for the column's type. Column: cp","timestamp":"2026-03-29 04:26:27"}
+{"level":"info","message":"Visiteur 3 mis à jour (compte personnel)","timestamp":"2026-03-29 04:27:10"}
+{"level":"error","message":"Erreur Serveur : [DELETE /api/visiteurs/account] 500 - \nInvalid `prisma.visiteur.delete()` invocation:\n\n\nForeign key constraint violated on the fields: (`idVisiteur`)","timestamp":"2026-03-29 04:27:45"}
+{"level":"info","message":"Visiteur 12 récupéré","timestamp":"2026-03-29 04:27:55"}

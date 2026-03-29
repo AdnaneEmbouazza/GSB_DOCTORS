@@ -94,6 +94,11 @@ export async function deleteRapportByIDAndVisiteur(id: number, visiteurId: numbe
     if (rapport.idvisiteur !== visiteurId) {
         throw new UnauthorizedError('Vous ne pouvez supprimer que vos propres rapports');
     }
+
+    // Supprimer d'abord toutes les offres associées au rapport (clé étrangère)
+    await prisma.offrir.deleteMany({
+        where: { idrapport: id }
+    });
     
     return prisma.rapport.delete({
         where: { id }
@@ -142,7 +147,12 @@ export function updateRapportByID (id: number, data: UpdateRapportDTO): Promise<
 };
 
 // deleteRapportByID : supprime un rapport en fonction de son ID
-export function deleteRapportByID (id: number): Promise<Rapport> {
+export async function deleteRapportByID (id: number): Promise<Rapport> {
+    // Supprimer d'abord toutes les offres associées au rapport (clé étrangère)
+    await prisma.offrir.deleteMany({
+        where: { idrapport: id }
+    });
+
     return prisma.rapport.delete({
         where: { id }
     });

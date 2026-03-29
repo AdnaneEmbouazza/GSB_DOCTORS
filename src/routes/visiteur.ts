@@ -124,6 +124,26 @@ router.get ('/visiteurs' , isloggedOn , asyncHandler(visiteurControleur.getAllVi
 
 /**
  * @swagger
+ * /api/visiteurs/account:
+ *   get:
+ *     summary: Récupérer les infos de mon compte
+ *     description: Retourne les informations du compte de l'utilisateur connecté (extrait du token)
+ *     security:
+ *       - BearerAuth: []
+ *     tags:
+ *       - Visiteurs
+ *     responses:
+ *       200:
+ *         description: Informations du compte récupérées
+ *       404:
+ *         description: Visiteur non trouvé
+ *       401:
+ *         description: Non authentifié
+ */
+router.get ('/visiteurs/account' , isloggedOn , asyncHandler(visiteurControleur.getCurrentVisiteur));
+
+/**
+ * @swagger
  * /api/visiteurs/{id}:
  *   get:
  *     summary: Récupérer un visiteur par ID
@@ -148,26 +168,6 @@ router.get ('/visiteurs' , isloggedOn , asyncHandler(visiteurControleur.getAllVi
  *         description: Non authentifié
  */
 router.get ('/visiteurs/:id' , isloggedOn , asyncHandler(visiteurControleur.getVisiteurByID));
-
-/**
- * @swagger
- * /api/visiteurs/account:
- *   get:
- *     summary: Récupérer les infos de mon compte
- *     description: Retourne les informations du compte de l'utilisateur connecté (extrait du token)
- *     security:
- *       - BearerAuth: []
- *     tags:
- *       - Visiteurs
- *     responses:
- *       200:
- *         description: Informations du compte récupérées
- *       404:
- *         description: Visiteur non trouvé
- *       401:
- *         description: Non authentifié
- */
-router.get ('/visiteurs/account' , isloggedOn , asyncHandler(visiteurControleur.getCurrentVisiteur));
 
 /**
  * @swagger
