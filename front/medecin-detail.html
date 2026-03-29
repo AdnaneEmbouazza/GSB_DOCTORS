@@ -69,6 +69,7 @@
                 </div>
 
                 <div class="medecin-actions">
+                    <button id="create-rapport-btn" class="btn-primary" style="display: none;">Créer un rapport</button>
                     <button id="show-rapports-btn" class="btn-primary">Voir les rapports</button>
                     <a href="index.html" class="btn-primary">Retour à l'accueil</a>
                 </div>
@@ -90,6 +91,40 @@
         <footer>
             <p>&copy; 2026 GSB Doctors. Tous droits réservés.</p>
         </footer>
+    </div>
+
+    <!-- Modale pour créer un rapport -->
+    <div id="create-rapport-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Créer un nouveau rapport</h2>
+                <button class="modal-close" id="modal-close-rapport">&times;</button>
+            </div>
+            <form id="create-rapport-form" class="modal-form">
+                <div class="form-group">
+                    <label for="rapport-date">Date de la visite</label>
+                    <input type="date" id="rapport-date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="rapport-motif">Motif de la visite</label>
+                    <input type="text" id="rapport-motif" required placeholder="Motif de la visite">
+                </div>
+                
+                <div class="form-group">
+                    <label for="rapport-bilan">Bilan de la visite</label>
+                    <textarea id="rapport-bilan" required placeholder="Bilan de la visite" rows="4"></textarea>
+                </div>
+                
+                <div id="create-rapport-error" class="form-message error" style="display: none;"></div>
+                <div id="create-rapport-success" class="form-message success" style="display: none;"></div>
+                
+                <div class="modal-actions">
+                    <button type="submit" class="btn-primary">Créer le rapport</button>
+                    <button type="button" class="btn-secondary" id="modal-cancel-rapport">Annuler</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script src="js/auth_check.js"></script>

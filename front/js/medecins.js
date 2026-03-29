@@ -39,6 +39,7 @@ const MEDECINS_PAR_PAGE = 50;
 let allMedecins = [];
 let currentPage = 1;
 let totalPages = 1;
+let isUserAuthenticated = false;
 
 // Éléments DOM
 const medecinsList = document.getElementById('medecins-list');
@@ -57,6 +58,9 @@ async function loadMedecins() {
     try {
         loadingDiv.style.display = 'block';
         errorDiv.style.display = 'none';
+        
+        // Vérifier l'authentification
+        isUserAuthenticated = await checkAuthStatus();
         
         allMedecins = await fetchMedecins();
         
@@ -144,7 +148,7 @@ function createMedecinCard(medecin) {
                     <span>${medecin.specialitecomplementaire}</span>
                 </div>
             ` : ''}
-            <a href="medecin-detail.html?id=${medecin.id}" class="btn-detail">Voir détails</a>
+            ${isUserAuthenticated ? `<a href="medecin-detail.html?id=${medecin.id}" class="btn-detail">Voir détails</a>` : ''}
         </div>
     `;
     
