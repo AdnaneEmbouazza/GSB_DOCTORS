@@ -885,3 +885,25 @@
 {"level":"error","message":"[GET /api/visiteurs/account] UnauthorizedError: 401 - Token d'authentification manquant","timestamp":"2026-03-29 23:31:49"}
 {"level":"error","message":"[GET /api/visiteurs/account] UnauthorizedError: 401 - Token d'authentification manquant","timestamp":"2026-03-29 23:31:49"}
 {"level":"info","message":"1000 médecins récupérés","timestamp":"2026-03-29 23:31:49"}
+{"level":"error","message":"[GET /api/visiteurs/account] UnauthorizedError: 401 - Token d'authentification manquant","timestamp":"2026-03-30 20:47:32"}
+{"level":"error","message":"[GET /api/visiteurs/account] UnauthorizedError: 401 - Token d'authentification manquant","timestamp":"2026-03-30 20:47:32"}
+{"level":"info","message":"1000 médecins récupérés","timestamp":"2026-03-30 20:47:32"}
+{"level":"error","message":"[GET /api/visiteurs/account] UnauthorizedError: 401 - Token d'authentification manquant","timestamp":"2026-03-30 20:47:34"}
+{"level":"info","message":"Nouveau visiteur inscrit","timestamp":"2026-03-30 20:48:28"}
+{"level":"error","message":"[GET /api/visiteurs/account] UnauthorizedError: 401 - Token d'authentification manquant","timestamp":"2026-03-30 20:48:30"}
+{"level":"error","message":"[POST /api/visiteurs/login] UnauthorizedError: 401 - Mot de passe incorrect","timestamp":"2026-03-30 20:48:37"}
+{"level":"error","message":"[POST /api/visiteurs/login] UnauthorizedError: 401 - Mot de passe incorrect","timestamp":"2026-03-30 20:49:35"}
+{"level":"error","message":"[POST /api/visiteurs/login] UnauthorizedError: 401 - Mot de passe incorrect","timestamp":"2026-03-30 20:50:06"}
+{"level":"error","message":"[POST /api/visiteurs/login] UnauthorizedError: 401 - Mot de passe incorrect","timestamp":"2026-03-30 20:50:11"}
+{"level":"error","message":"[GET /api/visiteurs/account] UnauthorizedError: 401 - Token d'authentification manquant","timestamp":"2026-03-30 20:50:24"}
+{"level":"info","message":"Nouveau visiteur inscrit","timestamp":"2026-03-30 20:50:48"}
+{"level":"error","message":"[GET /api/visiteurs/account] UnauthorizedError: 401 - Token d'authentification manquant","timestamp":"2026-03-30 20:50:50"}
+{"level":"info","message":"Visiteur adnane connecté","timestamp":"2026-03-30 20:50:57"}
+{"level":"info","message":"Visiteur 29 récupéré (depuis le token)","timestamp":"2026-03-30 20:50:59"}
+{"level":"info","message":"Visiteur 29 récupéré (depuis le token)","timestamp":"2026-03-30 20:50:59"}
+{"level":"info","message":"1000 médecins récupérés","timestamp":"2026-03-30 20:50:59"}
+{"level":"info","message":"Visiteur 29 récupéré (depuis le token)","timestamp":"2026-03-30 20:51:01"}
+{"level":"info","message":"Visiteur 29 récupéré (depuis le token)","timestamp":"2026-03-30 20:51:01"}
+{"level":"info","message":"Visiteur 29 récupéré (depuis le token)","timestamp":"2026-03-30 20:51:15"}
+{"level":"info","message":"Visiteur 29 récupéré (depuis le token)","timestamp":"2026-03-30 20:51:15"}
+{"level":"info","message":"1000 médecins récupérés","timestamp":"2026-03-30 20:51:15"}
