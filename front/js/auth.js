@@ -1,5 +1,34 @@
 const API_BASE = 'http://localhost:3000/api';
 
+/**
+ * Valide un mot de passe selon les critères de sécurité
+ * @param {string} password - Le mot de passe à valider
+ * @returns {Object} { isValid: boolean, message?: string }
+ */
+function validatePasswordStrength(password) {
+    if (!password) {
+        return { isValid: false, message: 'Le mot de passe est requis' };
+    }
+
+    if (password.length < 12) {
+        return { isValid: false, message: 'Le mot de passe doit contenir au minimum 12 caractères' };
+    }
+
+    if (!/[A-Z]/.test(password)) {
+        return { isValid: false, message: 'Le mot de passe doit contenir au moins une majuscule' };
+    }
+
+    if (!/[a-z]/.test(password)) {
+        return { isValid: false, message: 'Le mot de passe doit contenir au moins une minuscule' };
+    }
+
+    if (!/\d/.test(password)) {
+        return { isValid: false, message: 'Le mot de passe doit contenir au moins un chiffre' };
+    }
+
+    return { isValid: true };
+}
+
 // Login
 async function handleLogin(e) {
     e.preventDefault();
@@ -61,8 +90,10 @@ async function handleSignup(e) {
         return;
     }
     
-    if (mdp.length < 4) {
-        showError('signup-error', 'Le mot de passe doit faire au moins 4 caractères');
+    // Validation du mot de passe selon les critères de sécurité
+    const passwordValidation = validatePasswordStrength(mdp);
+    if (!passwordValidation.isValid) {
+        showError('signup-error', passwordValidation.message);
         return;
     }
     

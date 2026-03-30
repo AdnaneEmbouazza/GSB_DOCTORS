@@ -4,6 +4,7 @@ import { UnauthorizedError, BadRequestError, NotFoundError } from "../error";
 import { UpdateVisiteurDTO , CreateVisiteurDTO , LoginDTO } from "../models/visiteur";
 import { generateAccessToken, TokenPayload } from "../utils/token";
 import logger from "../utils/logger";
+import { getPasswordValidationError } from "../utils/password";
 
 export async function login(req: Request, res: Response): Promise<void> {
     const { login, mdp } : LoginDTO = req.body;
@@ -32,6 +33,12 @@ export async function inscription(req: Request, res: Response): Promise<void> {
 
     if (!data.login || !data.mdp) {
         throw new BadRequestError('Login et mot de passe sont requis');
+    }
+
+    // Validation du mot de passe selon les critères de sécurité
+    const passwordValidation = getPasswordValidationError(data.mdp);
+    if (!passwordValidation.isValid) {
+        throw new BadRequestError(passwordValidation.message || 'Le mot de passe ne respecte pas les critères de sécurité');
     }
 
     // Gestion erreur 400 (donnés manquantes ou invalides)
@@ -101,6 +108,14 @@ export async function updateCurrentVisiteur(req: Request, res: Response): Promis
     if (!data || Object.keys(data).length === 0) {
         throw new BadRequestError('Les données de mise à jour sont requises');
     }
+
+    // Validation du mot de passe si fourni
+    if (data.mdp) {
+        const passwordValidation = getPasswordValidationError(data.mdp);
+        if (!passwordValidation.isValid) {
+            throw new BadRequestError(passwordValidation.message || 'Le mot de passe ne respecte pas les critères de sécurité');
+        }
+    }
     
     const visiteur = await visiteurService.updateCurrentVisiteurByID(payload.id, data, payload);
     
@@ -120,6 +135,14 @@ export async function updateVisiteur(req: Request, res: Response): Promise<void>
     // Gestion erreur 400 (donnés manquantes ou invalides)
     if (!data || Object.keys(data).length === 0) {
         throw new BadRequestError('Les données de mise à jour sont requises');
+    }
+
+    // Validation du mot de passe si fourni
+    if (data.mdp) {
+        const passwordValidation = getPasswordValidationError(data.mdp);
+        if (!passwordValidation.isValid) {
+            throw new BadRequestError(passwordValidation.message || 'Le mot de passe ne respecte pas les critères de sécurité');
+        }
     }
     
     const visiteur = await visiteurService.updateVisiteurByID(id, data);
