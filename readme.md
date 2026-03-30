@@ -116,7 +116,9 @@ GSB_DOCTORS_Back-End/
 ├── GSB_Doctors.loo        # Diagramme complet de l'application
 └── package.json
 ```
+## Diagramme des Use Case 
 
+![Diagramme des UseCase](useCase.jpg)
 ## � Schéma de la Base de Données
 
 ### Vue d'ensemble des relations
